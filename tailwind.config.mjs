@@ -9,6 +9,7 @@ export default {
       colors: {
         canvas: "rgb(var(--theme-canvas) / <alpha-value>)",
         content: "rgb(var(--theme-content) / <alpha-value>)",
+        accent: "rgb(var(--theme-accent) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
