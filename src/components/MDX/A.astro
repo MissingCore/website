@@ -4,12 +4,13 @@ interface Props {
 }
 
 const { href } = Astro.props;
+
+const isExternalLink = href.startsWith("https://");
 ---
 
 <a
   href={href}
-  target="_blank"
-  rel="noreffer"
+  {...isExternalLink ? { target: "_blank", rel: "noreffer" } : {}}
   class="text-content underline decoration-accent decoration-wavy hover:opacity-85"
   ><slot /></a
 >
