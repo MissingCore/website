@@ -1,5 +1,5 @@
 ---
-import "@fontsource/inter";
+import "@fontsource-variable/inter";
 import { ClientRouter } from "astro:transitions";
 import type { ComponentProps } from "astro/types";
 
@@ -22,7 +22,7 @@ const { class: className, ...rest } = Astro.props;
     <ClientRouter />
   </head>
   <body class="flex min-h-svh bg-canvas p-4">
-    <main class:list={cn("mx-auto flex w-full max-w-5xl flex-col", className)}>
+    <main class:list={cn("mx-auto flex w-full max-w-2xl flex-col", className)}>
       <slot />
     </main>
   </body>

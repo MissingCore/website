@@ -20,3 +20,7 @@
   --theme-content: 240 240 240;
   --theme-accent: 200 16 46;
 }
+
+body {
+  color: rgb(var(--theme-content) / 0.75);
+}

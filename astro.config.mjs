@@ -1,4 +1,4 @@
-// @ts-check
+import mdx from "@astrojs/mdx";
 import node from "@astrojs/node";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
@@ -15,6 +15,7 @@ if (process.argv[3] === "--node" || process.argv[4] === "--node") {
 export default defineConfig({
   site: "https://missingcore.vercel.app",
   integrations: [
+    mdx(),
     sitemap(),
     tailwind({
       applyBaseStyles: false,
