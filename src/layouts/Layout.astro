@@ -1,0 +1,29 @@
+---
+import "@fontsource/inter";
+import { ClientRouter } from "astro:transitions";
+import type { ComponentProps } from "astro/types";
+
+import "@/assets/global.css";
+import { cn } from "@/lib/style";
+import MetaHead from "@/components/MetaHead.astro";
+
+interface Props extends ComponentProps<typeof MetaHead> {
+  /** Style applied to the `<main />`. */
+  class?: string;
+}
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <MetaHead {...rest} />
+    <ClientRouter />
+  </head>
+  <body class="flex min-h-svh flex-col gap-12 bg-canvas p-4">
+    <main class:list={cn("mx-auto flex w-full max-w-5xl flex-col", className)}>
+      <slot />
+    </main>
+  </body>
+</html>
