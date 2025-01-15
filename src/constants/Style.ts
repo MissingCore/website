@@ -6,6 +6,8 @@ export const Button = {
 
 /** Base styling for text. */
 export const Text = {
-  title: "text-4xl font-bold text-content",
-  description: "text-sm text-content/50",
+  h1: "text-4xl font-bold text-content",
+  h2: "text-3xl font-semibold text-content",
+  h3: "text-2xl font-semibold text-content",
+  description: "text-sm text-content/60",
 } as const;

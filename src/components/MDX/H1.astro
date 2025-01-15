@@ -1,0 +1,12 @@
+---
+import { Text } from "@/constants/Style";
+import { cn } from "@/lib/style";
+
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<h1 id={id} class={cn(Text.h1, "underline decoration-accent decoration-wavy")}><slot /></h1>

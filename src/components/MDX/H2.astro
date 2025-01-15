@@ -1,0 +1,11 @@
+---
+import { Text } from "@/constants/Style";
+
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<h2 id={id} class={Text.h2}><slot /></h2>
