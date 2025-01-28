@@ -21,8 +21,13 @@ const { class: className, ...rest } = Astro.props;
     <MetaHead {...rest} />
     <ClientRouter />
   </head>
-  <body class="flex min-h-svh bg-canvas p-4">
-    <main class:list={cn("mx-auto flex w-full max-w-2xl flex-col", className)}>
+  <body class="flex min-h-svh bg-canvas">
+    <main
+      class:list={cn(
+        "mx-auto flex w-full max-w-2xl flex-col gap-6 px-4 py-32",
+        className
+      )}
+    >
       <slot />
     </main>
   </body>
