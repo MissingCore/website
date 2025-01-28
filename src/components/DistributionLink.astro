@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+
+import GetItOnGitHub from "@/assets/get-it-on-github.png";
+import GetItOnGooglePlay from "@/assets/get-it-on-google-play.png";
+
+import { cn } from "@/lib/style";
+
+interface Props {
+  class?: string;
+  GitHub?: string;
+  GooglePlay?: string;
+}
+
+const { class: className, GitHub, GooglePlay } = Astro.props;
+---
+
+<div class:list={cn("flex flex-wrap gap-4", className)}>
+  {
+    GooglePlay ? (
+      <a href={GooglePlay} target="_blank" rel="noreferrer">
+        <Image
+          src={GetItOnGooglePlay}
+          alt="Get this app on Google Play."
+          width={192}
+          height={57}
+        />
+      </a>
+    ) : undefined
+  }
+  {
+    GitHub ? (
+      <a href={GitHub} target="_blank" rel="noreferrer">
+        <Image
+          src={GetItOnGitHub}
+          alt="Get this app on GitHub."
+          width={192}
+          height={57}
+        />
+      </a>
+    ) : undefined
+  }
+</div>

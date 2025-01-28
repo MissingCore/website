@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+
+import Music_Banner from "@/assets/projects/Music/banner.png";
+import Layout from "@/layouts/Layout.astro";
+
+import { Button, Text } from "@/constants/Style";
+import { cn } from "@/lib/style";
+import DistributionLink from "@/components/DistributionLink.astro";
+import Divider from "@/components/Divider.astro";
+import H1 from "@/components/MDX/H1.astro";
+---
+
+<Layout
+  title="Music"
+  description="A Nothing inspired local music player."
+  class="max-w-3xl items-center gap-8"
+>
+  <Image
+    src={Music_Banner}
+    alt="MissingCore logo."
+    class="h-auto w-full rounded-3xl"
+  />
+  <div class="flex w-full flex-wrap items-center gap-4">
+    <div class="flex shrink grow flex-col gap-4">
+      <H1 class="no-underline">Music</H1>
+      <p class={cn(Text.description, "text-base")}>
+        A Nothing inspired local music player.
+      </p>
+    </div>
+    <a href="/music/privacy-policy" class={cn(Button.default, "text-xs")}
+      >Privacy Policy</a
+    >
+  </div>
+  <DistributionLink
+    GitHub="https://github.com/MissingCore/Music/releases"
+    GooglePlay="https://play.google.com/store/apps/details?id=com.cyanchill.missingcore.music"
+    class="w-full"
+  />
+  <Divider />
+</Layout>
