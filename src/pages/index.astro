@@ -1,10 +1,35 @@
 ---
+import { Image } from "astro:assets";
+
+import MissingCore_Logo from "@/assets/MissingCore_Logo.png";
+import Music_Logo from "@/assets/projects/Music/logo.png";
 import Layout from "@/layouts/Layout.astro";
 
-import { Button, Text } from "@/constants/Style";
+import { Text } from "@/constants/Style";
+import { cn } from "@/lib/style";
+import Divider from "@/components/Divider.astro";
+import H1 from "@/components/MDX/H1.astro";
+import ProjectLink from "@/components/ProjectLink.astro";
 ---
 
-<Layout title="MissingCore" class="items-center justify-center">
-  <h1 class={Text.h1}>MissingCore</h1>
-  <a href="/privacy-policy" class={Button.default}>Privacy Policy</a>
+<Layout title="MissingCore" class="items-center justify-center gap-8">
+  <Image
+    src={MissingCore_Logo}
+    alt="MissingCore logo."
+    width={192}
+    height={192}
+    class="max-h-48 max-w-48 rounded-3xl"
+  />
+  <H1 class="text-center no-underline">MissingCore</H1>
+  <p class={cn(Text.description, "text-base text-center")}>
+    Building open source apps inspired by Nothing design.
+  </p>
+  <Divider />
+  <ProjectLink
+    href="/music"
+    name="Music"
+    description="A Nothing inspired local music player."
+    logo={Music_Logo}
+    alt="Music app logo."
+  />
 </Layout>

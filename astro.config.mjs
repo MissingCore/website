@@ -4,6 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import { defineConfig } from "astro/config";
+import icon from "astro-icon";
 
 let adapter = vercel();
 
@@ -20,6 +21,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    icon(),
   ],
   // "hybrid" is deprecated and makes "static" works like "hybrid".
   output: "static",

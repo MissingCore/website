@@ -17,6 +17,7 @@
 
 :root {
   --theme-canvas: 18 18 18;
+  --theme-surface: 27 29 31;
   --theme-content: 240 240 240;
   --theme-accent: 200 16 46;
 }

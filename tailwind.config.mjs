@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         canvas: "rgb(var(--theme-canvas) / <alpha-value>)",
+        surface: "rgb(var(--theme-surface) / <alpha-value>)",
         content: "rgb(var(--theme-content) / <alpha-value>)",
         accent: "rgb(var(--theme-accent) / <alpha-value>)",
       },
