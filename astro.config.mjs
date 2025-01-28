@@ -26,4 +26,7 @@ export default defineConfig({
   // "hybrid" is deprecated and makes "static" works like "hybrid".
   output: "static",
   adapter: adapter,
+  redirects: {
+    "/privacy-policy": "/music/privacy-policy",
+  },
 });
