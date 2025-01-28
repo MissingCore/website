@@ -19,7 +19,7 @@ const { href, name, description, logo, alt } = Astro.props;
 
 <a
   href={href}
-  class="bg-surface flex w-full items-center gap-2 rounded-[20px] p-2 hover:opacity-85"
+  class="flex w-full items-center gap-2 rounded-[20px] bg-surface p-2 hover:opacity-85"
 >
   <Image
     src={logo}
@@ -32,5 +32,5 @@ const { href, name, description, logo, alt } = Astro.props;
     <H2 class="text-2xl">{name}</H2>
     <p class={Text.description}>{description}</p>
   </div>
-  <Icon size={48} name="cheveron-right" />
+  <Icon size={48} name="cheveron-right" class="shrink-0" />
 </a>
