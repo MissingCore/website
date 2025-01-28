@@ -1,9 +1,12 @@
 ---
+import { cn } from "@/lib/style";
+
 interface Props {
   href: string;
+  class?: string;
 }
 
-const { href } = Astro.props;
+const { href, class: className } = Astro.props;
 
 const isExternalLink = href.startsWith("https://");
 ---
@@ -11,6 +14,8 @@ const isExternalLink = href.startsWith("https://");
 <a
   href={href}
   {...isExternalLink ? { target: "_blank", rel: "noreffer" } : {}}
-  class="text-content underline decoration-accent decoration-wavy hover:opacity-85"
-  ><slot /></a
+  class:list={cn(
+    "text-content underline decoration-accent decoration-wavy hover:opacity-85",
+    className
+  )}><slot /></a
 >

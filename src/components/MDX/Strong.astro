@@ -1,5 +1,13 @@
 ---
+import { cn } from "@/lib/style";
 
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<strong class="text-content font-semibold"><slot /></strong>
+<strong class:list={cn("font-semibold text-content", className)}
+  ><slot /></strong
+>

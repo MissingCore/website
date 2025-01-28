@@ -1,11 +1,13 @@
 ---
 import { Text } from "@/constants/Style";
+import { cn } from "@/lib/style";
 
 interface Props {
   id?: string;
+  class?: string;
 }
 
-const { id } = Astro.props;
+const { id, class: className } = Astro.props;
 ---
 
-<h3 id={id} class={Text.h3}><slot /></h3>
+<h3 id={id} class:list={cn(Text.h3, className)}><slot /></h3>
