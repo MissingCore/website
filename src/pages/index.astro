@@ -7,6 +7,7 @@ import Layout from "@/layouts/Layout.astro";
 
 import { Text } from "@/constants/Style";
 import { cn } from "@/lib/style";
+import A from "@/components/MDX/A.astro"
 import Divider from "@/components/Divider.astro";
 import H1 from "@/components/MDX/H1.astro";
 import ProjectLink from "@/components/ProjectLink.astro";
@@ -26,7 +27,7 @@ import ProjectLink from "@/components/ProjectLink.astro";
   />
   <H1 class="text-center no-underline">MissingCore</H1>
   <p class={cn(Text.description, "text-base text-center")}>
-    Building open source apps inspired by Nothing design.
+    Building <A href="https://github.com/MissingCore">open source</A> apps inspired by Nothing design.
   </p>
   <Divider />
   <ProjectLink
