@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import Music_Banner from "@/assets/projects/Music/banner.png";
+
+import Text from "@/components/v2/Text.astro";
+import Title from "@/components/v2/Title.astro";
+---
+
+<section transition:name="music" class="w-full">
+  <Image
+    src={Music_Banner}
+    alt="Music App Banner"
+    class="h-auto w-full rounded-2xl"
+  />
+  <div
+    class="bg-n-10 flex w-full flex-col justify-center gap-4 rounded-2xl p-4 sm:p-8"
+  >
+    <Title>Music</Title>
+    <Text>A Nothing inspired local music player.</Text>
+  </div>
+  <div class="flex flex-col sm:flex-row">
+    <div class="flex">
+      <p
+        class="bg-n-40 inline-flex flex-1 items-center justify-center rounded-2xl px-8 py-4 text-sm text-neutral-100 sm:flex-none sm:text-base"
+      >
+        v2.6.2
+      </p>
+      <div
+        class="bg-n-20 flex items-center justify-center gap-8 rounded-2xl px-8 py-4 text-neutral-100"
+      >
+        <a
+          href="https://play.google.com/store/apps/details?id=com.cyanchill.missingcore.music"
+          ><Icon name="logo-google-playstore" class="text-n-100 size-8" /></a
+        >
+        <a href="https://github.com/MissingCore/Music/releases"
+          ><Icon name="logo-github" class="text-n-100 size-8" /></a
+        >
+      </div>
+    </div>
+    <a
+      href="/music/privacy-policy"
+      class="bg-r-50 hover:bg-r-55 inline-flex flex-1 items-center justify-center rounded-full px-8 py-4 text-center text-sm text-neutral-100 sm:text-base"
+      >Privacy Policy
+    </a>
+  </div>
+</section>
