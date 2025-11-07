@@ -1,13 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: rgba(var(--theme-canvas));
-  --color-surface: rgba(var(--theme-surface));
-  --color-content: rgba(var(--theme-content));
-  --color-accent: rgba(var(--theme-accent));
+  --color-n-0: hsl(0 0% 0%);
+  --color-n-7: hsl(0 0% 7%); /* Not part of original specs. */
+  --color-n-10: hsl(0 0% 11%);
+  --color-n-15: hsl(0 0% 16%);
+  --color-n-20: hsl(0 0% 20%);
+  --color-n-30: hsl(0 0% 28%);
+  --color-n-40: hsl(0 0% 37%);
+  --color-n-50: hsl(0 0% 47%);
+  --color-n-60: hsl(0 0% 57%);
+  --color-n-70: hsl(0 0% 68%);
+  --color-n-80: hsl(0 0% 78%);
+  --color-n-90: hsl(0 0% 89%);
+  --color-n-95: hsl(0 0% 95%);
+  --color-n-100: hsl(0 0% 100%);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-r-10: hsl(358 79% 11%);
+  --color-r-20: hsl(358 79% 20%);
+  --color-r-30: hsl(358 79% 28%);
+  --color-r-40: hsl(358 79% 37%);
+  --color-r-50: hsl(358 79% 47%);
+  --color-r-55: hsl(358 79% 53%);
+  --color-r-60: hsl(358 79% 57%);
+  --color-r-70: hsl(358 79% 68%);
+  --color-r-80: hsl(358 79% 78%);
+  --color-r-90: hsl(358 79% 89%);
+
+  --color-y: hsl(47 100% 50%);
+  --color-b: hsl(239 49% 32%);
+  --color-g: hsl(144 71% 41%);
+
+  --color-canvas: var(--color-n-7);
+  --color-surface: var(--color-n-10);
+  --color-content: var(--color-n-90);
+  --color-accent: var(--color-r-50);
+
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 @layer base {
@@ -29,13 +60,6 @@
   scrollbar-width: none; /* Firefox */
 }
 
-:root {
-  --theme-canvas: 18 18 18;
-  --theme-surface: 27 29 31;
-  --theme-content: 240 240 240;
-  --theme-accent: 200 16 46;
-}
-
 body {
-  color: rgb(var(--theme-content) / 0.75);
+  color: hsl(0 0 80);
 }
