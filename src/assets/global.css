@@ -27,7 +27,9 @@
   --color-r-80: hsl(358 79% 78%);
   --color-r-90: hsl(358 79% 89%);
 
-  --color-y: hsl(47 100% 50%);
+  --color-y-10: hsl(57 100% 11%);
+  --color-y-50: hsl(47 100% 50%);
+
   --color-b: hsl(239 49% 32%);
   --color-g: hsl(144 71% 41%);
 
