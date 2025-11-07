@@ -6,7 +6,10 @@ import { NavigationStructure } from "@/constants/Data";
 import { cn } from "@/lib/style";
 
 const asPath = Astro.url.pathname;
-const screenContext = NavigationStructure[asPath as Route];
+// `pathname` includes a trailing slash in the prod build.
+const path =
+  asPath === "/" ? "/" : asPath.at(-1) === "/" ? asPath.slice(0, -1) : asPath;
+const screenContext = NavigationStructure[path as Route];
 
 if (!screenContext) return null;
 
