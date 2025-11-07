@@ -8,6 +8,12 @@ import Card from "../Card.astro";
 import ColRow from "../ColRow.astro";
 import Text from "../Text.astro";
 import Title from "../Title.astro";
+
+interface Props {
+  unfocused?: boolean;
+}
+
+const { unfocused } = Astro.props;
 ---
 
 <section transition:name="music" class="w-full">
@@ -17,7 +23,7 @@ import Title from "../Title.astro";
     class="h-auto w-full rounded-2xl"
   />
   <Card>
-    <Title>Music</Title>
+    <Title unfocused={unfocused}>Music</Title>
     <Text>A Nothing inspired local music player.</Text>
   </Card>
   <ColRow>

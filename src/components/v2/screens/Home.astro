@@ -7,6 +7,12 @@ import Card from "../Card.astro";
 import ColRow from "../ColRow.astro";
 import Text from "../Text.astro";
 import Title from "../Title.astro";
+
+interface Props {
+  unfocused?: boolean;
+}
+
+const { unfocused } = Astro.props;
 ---
 
 <section transition:name="home" class="w-full">
@@ -22,7 +28,7 @@ import Title from "../Title.astro";
       <Card plain class="flex-1 sm:hidden" />
     </div>
     <Card class="bg-n-15">
-      <Title>MissingCore</Title>
+      <Title unfocused={unfocused}>MissingCore</Title>
       <Text>Building open source apps inspired by Nothing design.</Text>
     </Card>
   </ColRow>
