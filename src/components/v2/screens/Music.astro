@@ -8,6 +8,7 @@ import Card from "../Card.astro";
 import ColRow from "../ColRow.astro";
 import Text from "../Text.astro";
 import Title from "../Title.astro";
+import ViewTransitionWrapper from "../ViewTransitionWrapper.astro";
 
 interface Props {
   unfocused?: boolean;
@@ -16,7 +17,7 @@ interface Props {
 const { unfocused } = Astro.props;
 ---
 
-<section transition:name="music" class="w-full">
+<ViewTransitionWrapper name="Music" unfocused={unfocused}>
   <Image
     src={Music_Banner}
     alt="Music App Banner"
@@ -47,4 +48,4 @@ const { unfocused } = Astro.props;
       ><Text class="text-n-100 sm:text-base">Privacy Policy</Text>
     </a>
   </ColRow>
-</section>
+</ViewTransitionWrapper>

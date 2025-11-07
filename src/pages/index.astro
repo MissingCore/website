@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import BackgroundScreen from "@/components/v2/BackgroundScreen.astro";
 import Home from "@/components/v2/screens/Home.astro";
 import Music from "@/components/v2/screens/Music.astro";
 ---
@@ -10,10 +11,7 @@ import Music from "@/components/v2/screens/Music.astro";
 >
   <Home />
 
-  <div
-    aria-hidden="true"
-    class="absolute -z-100 translate-x-1/2 scale-75 blur-lg"
-  >
+  <BackgroundScreen right>
     <Music unfocused />
-  </div>
+  </BackgroundScreen>
 </Layout>

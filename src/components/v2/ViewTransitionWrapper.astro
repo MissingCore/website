@@ -1,0 +1,17 @@
+---
+import { cn } from "@/lib/style";
+
+interface Props {
+  name: string;
+  unfocused?: boolean;
+}
+
+const { name, unfocused } = Astro.props;
+---
+
+<section
+  transition:name={name}
+  class:list={cn("w-full", { "scale-75 blur-lg": unfocused })}
+>
+  <slot />
+</section>

@@ -7,6 +7,7 @@ import Card from "../Card.astro";
 import ColRow from "../ColRow.astro";
 import Text from "../Text.astro";
 import Title from "../Title.astro";
+import ViewTransitionWrapper from "../ViewTransitionWrapper.astro";
 
 interface Props {
   unfocused?: boolean;
@@ -15,7 +16,7 @@ interface Props {
 const { unfocused } = Astro.props;
 ---
 
-<section transition:name="home" class="w-full">
+<ViewTransitionWrapper name="Home" unfocused={unfocused}>
   <ColRow>
     <div class="flex max-h-48 shrink-0">
       <Image
@@ -32,4 +33,4 @@ const { unfocused } = Astro.props;
       <Text>Building open source apps inspired by Nothing design.</Text>
     </Card>
   </ColRow>
-</section>
+</ViewTransitionWrapper>

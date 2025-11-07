@@ -1,0 +1,19 @@
+---
+import { cn } from "@/lib/style";
+
+interface Props {
+  right?: boolean;
+}
+
+const { right } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={cn(
+    "pointer-events-none absolute -z-100 hidden -translate-x-3/4 sm:block",
+    { "translate-x-3/4": right }
+  )}
+>
+  <slot />
+</div>
