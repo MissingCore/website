@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+
+import MissingCore_Logo from "@/assets/MissingCore_Logo.png";
+
+import Text from "@/components/v2/Text.astro";
+import Title from "@/components/v2/Title.astro";
+---
+
+<section transition:name="home" class="w-full">
+  <div class="flex flex-col sm:flex-row">
+    <div class="flex max-h-48 shrink-0">
+      <Image
+        src={MissingCore_Logo}
+        alt="MissingCore Logo"
+        height={192}
+        width={192}
+        class="aspect-square w-full max-w-48 rounded-2xl"
+      />
+      <div class="bg-n-10 flex-1 rounded-2xl sm:hidden"></div>
+    </div>
+    <div
+      class="bg-n-15 flex w-full flex-col justify-center gap-4 rounded-2xl p-4 sm:p-8"
+    >
+      <Title>MissingCore</Title>
+      <Text>Building open source apps inspired by Nothing design.</Text>
+    </div>
+  </div>
+</section>
