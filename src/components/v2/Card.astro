@@ -1,0 +1,18 @@
+---
+import { cn } from "@/lib/style";
+
+interface Props {
+  as?: "div" | "p";
+  /** Only apply background color & border radius styling. */
+  plain?: boolean;
+  class?: string;
+}
+
+const { as: Element = "div", plain = false, class: className } = Astro.props;
+const cardStyles = "flex w-full flex-col justify-center gap-4 p-4 sm:p-8";
+---
+
+<Element
+  class:list={cn("bg-n-10 rounded-2xl", { [cardStyles]: !plain }, className)}
+  ><slot /></Element
+>

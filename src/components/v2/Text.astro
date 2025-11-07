@@ -1,7 +1,13 @@
 ---
+import { cn } from "@/lib/style";
 
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<p class="text-n-80 font-sans text-sm sm:text-xl">
+<p class:list={cn("text-n-80 font-sans text-sm sm:text-xl", className)}>
   <slot />
 </p>
