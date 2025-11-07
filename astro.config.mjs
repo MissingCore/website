@@ -3,7 +3,7 @@ import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import icon from "astro-icon";
 
 let adapter = vercel();
@@ -24,5 +24,19 @@ export default defineConfig({
   },
   redirects: {
     "/privacy-policy": "/music/privacy-policy",
+  },
+  experimental: {
+    fonts: [
+      {
+        name: "Inter",
+        cssVariable: "--font-inter",
+        provider: fontProviders.fontsource(),
+      },
+      {
+        name: "Playfair Display",
+        cssVariable: "--font-playfair-display",
+        provider: fontProviders.fontsource(),
+      },
+    ],
   },
 });
