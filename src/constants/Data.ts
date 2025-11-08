@@ -1,5 +1,5 @@
-import Home from "@/screens/Home.astro";
-import Music from "@/screens/Music.astro";
+import Home from "~/screens/Home.astro";
+import Music from "~/screens/Music.astro";
 
 const Screens = {
   "/": { name: "MissingCore", href: "/", screen: Home },
