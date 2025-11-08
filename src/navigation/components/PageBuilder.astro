@@ -18,16 +18,20 @@ const NextScreen = screenContext.next?.screen;
 ---
 
 <Layout title={screenContext.name} description={screenContext.description}>
-  {(<Screen />)}
+  <Screen />
 
   {
     PrevScreen && (
-      <BackgroundScreen>{<PrevScreen unfocused />}</BackgroundScreen>
+      <BackgroundScreen>
+        <PrevScreen unfocused />
+      </BackgroundScreen>
     )
   }
   {
     NextScreen && (
-      <BackgroundScreen right>{<NextScreen unfocused />}</BackgroundScreen>
+      <BackgroundScreen right>
+        <NextScreen unfocused />
+      </BackgroundScreen>
     )
   }
 </Layout>
