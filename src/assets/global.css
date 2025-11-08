@@ -34,11 +34,6 @@
   --color-b: hsl(239 49% 32%);
   --color-g: hsl(144 71% 41%);
 
-  --color-canvas: var(--color-n-7);
-  --color-surface: var(--color-n-10);
-  --color-content: var(--color-n-90);
-  --color-accent: var(--color-r-50);
-
   --font-sans:
     var(--font-inter), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
