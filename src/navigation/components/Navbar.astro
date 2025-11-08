@@ -21,7 +21,6 @@ const hasNext = screenContext.next !== null;
   <div class="flex w-full max-w-xl min-w-0 items-center px-4 py-8 sm:px-16">
     <a
       href={screenContext.prev?.href}
-      data-navBtn
       class:list={cn("bg-y-10 shrink-0 rounded-full p-2", {
         "bg-y-50 hover:bg-y-60": hasPrev,
       })}
@@ -35,7 +34,6 @@ const hasNext = screenContext.next !== null;
     </div>
     <a
       href={screenContext.next?.href}
-      data-navBtn
       class:list={cn("bg-y-10 shrink-0 rounded-full p-2", {
         "bg-y-50 hover:bg-y-60": hasNext,
       })}
