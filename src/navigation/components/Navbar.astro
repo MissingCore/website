@@ -17,15 +17,20 @@ const hasPrev = screenContext.prev !== null;
 const hasNext = screenContext.next !== null;
 ---
 
-<div class="fixed right-0 bottom-0 left-0 flex min-w-0 justify-center">
-  <div class="flex w-full max-w-xl min-w-0 items-center px-4 py-8 sm:px-16">
+<nav
+  transition:name="navbar"
+  class="pointer-events-none fixed right-0 bottom-0 left-0 z-100 flex min-w-0 justify-center"
+>
+  <div
+    class="flex w-full max-w-xl min-w-0 items-center px-4 py-8 *:pointer-events-auto sm:px-16"
+  >
     <a
       href={screenContext.prev?.href}
       class:list={cn("bg-y-10 shrink-0 rounded-full p-2", {
         "bg-y-50 hover:bg-y-60": hasPrev,
       })}
     >
-      <Icon name="arrow-right" class="text-n-0 size-8 rotate-180" />
+      <Icon aria-hidden name="arrow-right" class="text-n-0 size-8 rotate-180" />
     </a>
     <div
       class="bg-y-50 flex h-full w-full min-w-0 items-center justify-center rounded-full px-4 py-2"
@@ -38,7 +43,7 @@ const hasNext = screenContext.next !== null;
         "bg-y-50 hover:bg-y-60": hasNext,
       })}
     >
-      <Icon name="arrow-right" class="text-n-0 size-8" />
+      <Icon aria-hidden name="arrow-right" class="text-n-0 size-8" />
     </a>
   </div>
-</div>
+</nav>
