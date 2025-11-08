@@ -44,13 +44,3 @@ const hasNext = screenContext.next !== null;
     </a>
   </div>
 </div>
-
-<script>
-  const isMobile = window.innerWidth < 768;
-  const navButtons = document.querySelectorAll("a[data-navBtn]");
-  if (isMobile) {
-    navButtons.forEach((node) => {
-      node.setAttribute("data-astro-reload", "");
-    });
-  }
-</script>
