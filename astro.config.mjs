@@ -31,6 +31,7 @@ export default defineConfig({
         name: "Inter",
         cssVariable: "--font-inter",
         provider: fontProviders.fontsource(),
+        weights: [400, 600],
       },
       {
         name: "Playfair Display",

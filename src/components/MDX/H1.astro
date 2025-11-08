@@ -1,5 +1,4 @@
 ---
-import { Text } from "~/constants/Style";
 import { cn } from "~/lib/style";
 
 interface Props {
@@ -10,11 +9,6 @@ interface Props {
 const { id, class: className } = Astro.props;
 ---
 
-<h1
-  id={id}
-  class:list={cn(
-    Text.h1,
-    "underline decoration-accent decoration-wavy",
-    className
-  )}><slot /></h1
->
+<h1 id={id} class:list={cn("text-n-100 font-serif text-5xl", className)}>
+  <slot />
+</h1>

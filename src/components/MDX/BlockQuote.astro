@@ -1,5 +1,4 @@
 ---
-import { Text } from "~/constants/Style";
 import { cn } from "~/lib/style";
 
 interface Props {
@@ -9,6 +8,11 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<blockquote class:list={cn(Text.description, "-mt-3 font-semibold", className)}>
+<blockquote
+  class:list={cn(
+    "border-l-r-50 text-n-95 border-l-2 pl-2 text-sm font-semibold",
+    className
+  )}
+>
   <slot />
 </blockquote>

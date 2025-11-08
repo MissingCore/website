@@ -8,6 +8,11 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<ul class:list={cn("ml-4 flex list-disc flex-col gap-2 pl-4", className)}>
+<ul
+  class:list={cn(
+    "text-n-80 ml-4 flex list-disc flex-col gap-2 pl-4",
+    className
+  )}
+>
   <slot />
 </ul>

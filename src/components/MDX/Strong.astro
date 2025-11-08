@@ -8,6 +8,4 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<strong class:list={cn("font-semibold text-content", className)}
-  ><slot /></strong
->
+<strong class:list={cn("text-n-90 font-semibold", className)}><slot /></strong>

@@ -65,7 +65,3 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
-body {
-  color: hsl(0 0 80);
-}
