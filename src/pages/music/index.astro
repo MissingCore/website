@@ -1,14 +1,5 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Home from "@/components/screens/Home.astro";
-import Music from "@/components/screens/Music.astro";
-import BackgroundScreen from "@/components/BackgroundScreen.astro";
+import PageBuilder from "@/components/screen/PageBuilder.astro";
 ---
 
-<Layout title="Music" description="A Nothing inspired local music player.">
-  <Music />
-
-  <BackgroundScreen>
-    <Home unfocused />
-  </BackgroundScreen>
-</Layout>
+<PageBuilder route="/music" />

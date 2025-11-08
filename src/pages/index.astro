@@ -1,17 +1,5 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Home from "@/components/screens/Home.astro";
-import Music from "@/components/screens/Music.astro";
-import BackgroundScreen from "@/components/BackgroundScreen.astro";
+import PageBuilder from "@/components/screen/PageBuilder.astro";
 ---
 
-<Layout
-  title="MissingCore"
-  description="Building open source apps inspired by Nothing design."
->
-  <Home />
-
-  <BackgroundScreen right>
-    <Music unfocused />
-  </BackgroundScreen>
-</Layout>
+<PageBuilder route="/" />

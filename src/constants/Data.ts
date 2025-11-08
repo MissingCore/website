@@ -1,5 +1,5 @@
-import Home from "@/components/screens/Home.astro";
-import Music from "@/components/screens/Music.astro";
+import Home from "@/screens/Home.astro";
+import Music from "@/screens/Music.astro";
 
 const Screens = {
   "/": { name: "MissingCore", href: "/", screen: Home },
@@ -11,14 +11,19 @@ const Screens = {
   },
 } as const;
 
+export type NonMDXRoute = "/" | "/music";
+export type Route = keyof typeof Screens;
+
 export const NavigationStructure = {
   "/": {
     ...Screens["/"],
+    description: "Building open source apps inspired by Nothing design.",
     next: Screens["/music"],
     prev: null,
   },
   "/music": {
     ...Screens["/music"],
+    description: "A Nothing inspired local music player.",
     next: null,
     prev: Screens["/"],
   },
@@ -28,5 +33,3 @@ export const NavigationStructure = {
     prev: Screens["/music"],
   },
 };
-
-export type Route = keyof typeof NavigationStructure;
