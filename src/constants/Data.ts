@@ -1,6 +1,8 @@
 import Home from "~/screens/Home.astro";
 import Music from "~/screens/Music.astro";
 
+import type { ObjectValues } from "~/utils/types";
+
 const Screens = {
   "/": { name: "MissingCore", href: "/", screen: Home },
   "/music": { name: "Music", href: "/music", screen: Music },
@@ -11,7 +13,10 @@ const Screens = {
   },
 } as const;
 
-export type NonMDXRoute = "/" | "/music";
+export type NonMDXRoute = Exclude<
+  ObjectValues<typeof Screens>,
+  { screen: null }
+>["href"];
 export type Route = keyof typeof Screens;
 
 export const NavigationStructure = {
