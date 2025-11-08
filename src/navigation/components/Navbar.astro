@@ -1,15 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import type { Route } from "~/constants/Data";
-import { NavigationStructure } from "~/constants/Data";
+import type { Route } from "../routes";
+import { NavigationTree } from "../routes";
 import { cn } from "~/lib/style";
 
 const asPath = Astro.url.pathname;
 // `pathname` includes a trailing slash in the prod build.
 const path =
   asPath === "/" ? "/" : asPath.at(-1) === "/" ? asPath.slice(0, -1) : asPath;
-const screenContext = NavigationStructure[path as Route];
+const screenContext = NavigationTree[path as Route];
 
 if (!screenContext) return null;
 

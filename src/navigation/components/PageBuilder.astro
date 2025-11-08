@@ -1,8 +1,8 @@
 ---
-import Layout from "~/layouts/Layout.astro";
+import Layout from "../layouts/Layout.astro";
 
-import type { NonMDXRoute } from "~/constants/Data";
-import { NavigationStructure } from "~/constants/Data";
+import type { NonMDXRoute } from "../routes";
+import { NavigationTree } from "../routes";
 import BackgroundScreen from "./BackgroundScreen.astro";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { route } = Astro.props;
-const screenContext = NavigationStructure[route];
+const screenContext = NavigationTree[route];
 
 const Screen = screenContext.screen;
 const PrevScreen = screenContext.prev?.screen;

@@ -1,5 +1,5 @@
-import Home from "~/screens/Home.astro";
-import Music from "~/screens/Music.astro";
+import Home from "./screens/Home.astro";
+import Music from "./screens/Music.astro";
 
 import type { ObjectValues } from "~/utils/types";
 
@@ -19,7 +19,7 @@ export type NonMDXRoute = Exclude<
 >["href"];
 export type Route = keyof typeof Screens;
 
-export const NavigationStructure = {
+export const NavigationTree = {
   "/": {
     ...Screens["/"],
     description: "Building open source apps inspired by Nothing design.",

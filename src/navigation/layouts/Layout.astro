@@ -5,8 +5,8 @@ import type { ComponentProps } from "astro/types";
 
 import "~/assets/global.css";
 import { cn } from "~/lib/style";
-import MetaHead from "~/components/MetaHead.astro";
-import Navbar from "~/components/Navbar.astro";
+import MetaHead from "../components/MetaHead.astro";
+import Navbar from "../components/Navbar.astro";
 
 interface Props extends ComponentProps<typeof MetaHead> {
   /** Style applied to the `<main />`. */
