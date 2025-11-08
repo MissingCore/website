@@ -30,7 +30,7 @@ const { unfocused } = Astro.props;
   <ColRow>
     <div class="flex">
       <Card class="bg-n-40 items-center sm:py-4">
-        <Text class="text-n-100 sm:text-base">v2.6.2</Text>
+        <Text data-appVersion class="text-n-100 min-w-[4ch] sm:text-base" />
       </Card>
       <Card class="bg-n-20 flex-row items-center gap-8 sm:py-4">
         <a
@@ -50,3 +50,36 @@ const { unfocused } = Astro.props;
     </a>
   </ColRow>
 </ViewTransitionWrapper>
+
+<script>
+  const RELEASE_NOTES_LINK =
+    "https://api.github.com/repos/MissingCore/Music/releases";
+
+  async function getLatestMusicAppRelease() {
+    const res = await fetch(`${RELEASE_NOTES_LINK}/latest`, {
+      cache: "force-cache",
+    });
+    const data = await res.json();
+    return {
+      version: data.tag_name,
+      // Remove markdown comments w/ regex.
+      releaseNotes: data.body
+        ? data.body.replace(/<!--[\s\S]*?(?:-->)/g, "")
+        : undefined,
+    };
+  }
+
+  async function updateMusicProjectContent(
+    data: Awaited<ReturnType<typeof getLatestMusicAppRelease>>
+  ) {
+    const versionNode = document.querySelector(
+      "section#Music p[data-appVersion]"
+    );
+    if (versionNode) versionNode.textContent = data.version;
+  }
+
+  // Required since Astro run bundled scripts once.
+  document.addEventListener("astro:page-load", () => {
+    getLatestMusicAppRelease().then(updateMusicProjectContent);
+  });
+</script>

@@ -10,8 +10,9 @@ const { name, unfocused } = Astro.props;
 ---
 
 <section
+  id={name}
   transition:name={name}
-  class:list={cn("w-full", { "scale-75 blur-lg": unfocused })}
+  class:list={cn("w-full", { "max-h-svh scale-75 blur-lg": unfocused })}
 >
   <slot />
 </section>

@@ -1,13 +1,18 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 import { cn } from "~/lib/style";
 
-interface Props {
+interface Props extends HTMLAttributes<"p"> {
   class?: string;
 }
 
-const { class: className } = Astro.props;
+const { class: className, ...props } = Astro.props;
 ---
 
-<p class:list={cn("text-n-80 font-sans text-sm sm:text-xl", className)}>
+<p
+  class:list={cn("text-n-80 font-sans text-sm sm:text-xl", className)}
+  {...props}
+>
   <slot />
 </p>
