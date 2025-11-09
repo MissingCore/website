@@ -34,11 +34,15 @@ const { unfocused } = Astro.props;
       </Card>
       <Card class="bg-n-20 flex-row items-center gap-8 sm:py-4">
         <a
+          aria-label="Google Play Listing"
           href="https://play.google.com/store/apps/details?id=com.cyanchill.missingcore.music"
           target="_blank"
           ><Icon name="logo-google-playstore" class="text-n-100 size-8" /></a
         >
-        <a href="https://github.com/MissingCore/Music/releases" target="_blank"
+        <a
+          aria-label="Latest GitHub Release"
+          href="https://github.com/MissingCore/Music/releases/latest"
+          target="_blank"
           ><Icon name="logo-github" class="text-n-100 size-8" /></a
         >
       </Card>

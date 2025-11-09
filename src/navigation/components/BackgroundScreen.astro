@@ -10,6 +10,7 @@ const { right } = Astro.props;
 
 <div
   aria-hidden="true"
+  inert
   class="pointer-events-none fixed top-1/2 -z-100 hidden -translate-y-1/2 select-none sm:block"
 >
   <div class:list={cn("-translate-x-[95%]", { "translate-x-[95%]": right })}>

@@ -25,6 +25,9 @@ const hasNext = screenContext.next !== null;
     class="flex w-full max-w-xl min-w-0 items-center px-4 py-8 *:pointer-events-auto sm:px-16"
   >
     <a
+      aria-label={screenContext.prev
+        ? `[Back] ${screenContext.prev.name}`
+        : undefined}
       href={screenContext.prev?.href}
       class:list={cn("bg-y-10 shrink-0 rounded-full p-2", {
         "bg-y-50 hover:bg-y-60": hasPrev,
@@ -38,6 +41,9 @@ const hasNext = screenContext.next !== null;
       <p class="text-n-0 truncate">{screenContext.name}</p>
     </div>
     <a
+      aria-label={screenContext.next
+        ? `[Next] ${screenContext.next.name}`
+        : undefined}
       href={screenContext.next?.href}
       class:list={cn("bg-y-10 shrink-0 rounded-full p-2", {
         "bg-y-50 hover:bg-y-60": hasNext,
