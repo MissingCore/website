@@ -11,7 +11,7 @@ const { class: className, ...props } = Astro.props;
 ---
 
 <p
-  class:list={cn("text-n-80 font-sans text-sm sm:text-xl", className)}
+  class:list={cn("font-sans text-sm text-n-80 sm:text-xl", className)}
   {...props}
 >
   <slot />

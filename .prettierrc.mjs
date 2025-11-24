@@ -9,4 +9,5 @@ export default {
       },
     },
   ],
+  tailwindStylesheet: "./src/assets/global.css",
 };
