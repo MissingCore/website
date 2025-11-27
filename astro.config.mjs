@@ -14,7 +14,7 @@ if (process.argv[3] === "--node" || process.argv[4] === "--node") {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://missingcore.vercel.app",
+  site: "https://missingcore.cyanchill.com",
   integrations: [mdx(), sitemap(), icon()],
   // "hybrid" is deprecated and makes "static" works like "hybrid".
   output: "static",
