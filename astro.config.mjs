@@ -25,23 +25,21 @@ export default defineConfig({
   redirects: {
     "/privacy-policy": "/music/privacy-policy",
   },
-  experimental: {
-    fonts: [
-      {
-        name: "Inter",
-        cssVariable: "--font-inter",
-        provider: fontProviders.fontsource(),
-        weights: [400, 600],
-        styles: ["normal", "italic"],
-        subsets: ["latin", "latin-ext"],
-      },
-      {
-        name: "Playfair Display",
-        cssVariable: "--font-playfair-display",
-        provider: fontProviders.fontsource(),
-        styles: ["normal"],
-        subsets: ["latin", "latin-ext"],
-      },
-    ],
-  },
+  fonts: [
+    {
+      name: "Inter",
+      cssVariable: "--font-inter",
+      provider: fontProviders.fontsource(),
+      weights: [400, 600],
+      styles: ["normal", "italic"],
+      subsets: ["latin", "latin-ext"],
+    },
+    {
+      name: "Playfair Display",
+      cssVariable: "--font-playfair-display",
+      provider: fontProviders.fontsource(),
+      styles: ["normal"],
+      subsets: ["latin", "latin-ext"],
+    },
+  ],
 });

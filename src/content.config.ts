@@ -1,16 +1,13 @@
 import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
 
-import { z } from "astro:content";
-
-export const MDXFrontmatterSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-});
-
-export type MDXFrontmatter = z.infer<typeof MDXFrontmatterSchema>;
+import { MDXFrontmatterSchema } from "./data/PrivacyPolicy";
 
 export const privacyPolicyCollection = defineCollection({
-  type: "content",
+  loader: glob({
+    base: "./src/content/privacy-policy",
+    pattern: "**/*.{md,mdx}",
+  }),
   schema: MDXFrontmatterSchema,
 });
 
