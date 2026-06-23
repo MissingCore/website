@@ -34,12 +34,8 @@
   --color-b: hsl(239 49% 32%);
   --color-g: hsl(144 71% 41%);
 
-  --font-sans:
-    var(--font-inter), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif:
-    var(--font-playfair-display), ui-serif, Georgia, Cambria, "Times New Roman",
-    Times, serif;
+  --font-nynjara: var(--font-nynjara);
+  --font-space-grotesk: var(--font-space-grotesk);
 }
 
 @layer base {

@@ -27,19 +27,32 @@ export default defineConfig({
   },
   fonts: [
     {
-      name: "Inter",
-      cssVariable: "--font-inter",
-      provider: fontProviders.fontsource(),
-      weights: [400, 600],
-      styles: ["normal", "italic"],
-      subsets: ["latin", "latin-ext"],
+      provider: fontProviders.local(),
+      name: "Nynjara",
+      cssVariable: "--font-nynjara",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/nynjara.woff2"],
+            weight: "normal",
+            style: "normal",
+          },
+        ],
+      },
     },
     {
-      name: "Playfair Display",
-      cssVariable: "--font-playfair-display",
-      provider: fontProviders.fontsource(),
-      styles: ["normal"],
-      subsets: ["latin", "latin-ext"],
+      provider: fontProviders.local(),
+      name: "Space Grotesk",
+      cssVariable: "--font-space-grotesk",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf"],
+            weight: "100 900",
+            style: "normal",
+          },
+        ],
+      },
     },
   ],
 });

@@ -19,16 +19,18 @@ const { class: className, ...rest } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
-    <Font cssVariable="--font-inter" preload />
-    <Font cssVariable="--font-playfair-display" preload />
+    <Font cssVariable="--font-nynjara" preload />
+    <Font cssVariable="--font-space-grotesk" preload />
     <MetaHead {...rest} />
     <ClientRouter />
   </head>
-  <body class="flex min-h-svh overflow-x-clip bg-n-7 text-n-70">
+  <body
+    class="flex min-h-svh overflow-x-clip bg-n-0 font-space-grotesk text-n-100"
+  >
     <main
       class:list={cn(
         "relative mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-6 px-4 py-32",
-        className
+        className,
       )}
     >
       <Navbar />

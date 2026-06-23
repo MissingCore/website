@@ -21,6 +21,9 @@ const customTwMerge = extendTailwindMerge({
         "g",
       ].flat(),
     },
+    classGroups: {
+      "font-family": ["nynjara", "space-grotesk"],
+    },
   },
 });
 
