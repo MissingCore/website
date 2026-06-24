@@ -1,0 +1,17 @@
+---
+interface Props {
+  text: string;
+  color: `#${string}`;
+  indicator?: boolean;
+}
+
+const { text, color, indicator } = Astro.props;
+---
+
+<div
+  style={{ "--bdg-clr": color }}
+  class="flex h-min flex-row items-center gap-2 rounded-full border-2 border-(--bdg-clr) px-3 py-1 text-(--bdg-clr) shadow-glow"
+>
+  {indicator ? <div class="size-1 rounded-full bg-(--bdg-clr)" /> : null}
+  <p class="text-xs uppercase">{text}</p>
+</div>
