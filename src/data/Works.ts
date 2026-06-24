@@ -1,9 +1,10 @@
+import { MUSIC_LATEST_RELEASE, MUSIC_LATEST_TAGGED_RELEASE } from "./env";
+
 export type Distributor = "github" | "google-playstore";
 
 export type Release = {
   versionCode: string;
-  stable: boolean;
-  distributions: Distributor[];
+  distributors: Distributor[];
 };
 
 export interface Work {
@@ -16,7 +17,10 @@ export interface Work {
     github: `https://github.com/${string}`;
     "google-playstore"?: string;
   };
-  releases: Release[];
+  releases: {
+    stable: Release;
+    preRelease?: Release;
+  };
   privacyPolicy?: string;
 }
 
@@ -31,25 +35,18 @@ export const Works: Work[] = [
       "google-playstore":
         "https://play.google.com/store/apps/details?id=com.cyanchill.missingcore.music",
     },
-    releases: [
-      {
-        versionCode: import.meta.env.PUBLIC_MUSIC_RELEASE,
-        stable: true,
-        distributions: ["github", "google-playstore"],
+    releases: {
+      stable: {
+        versionCode: MUSIC_LATEST_RELEASE,
+        distributors: ["github", "google-playstore"],
       },
-      ...(import.meta.env.PUBLIC_MUSIC_RELEASE !==
-      import.meta.env.PUBLIC_MUSIC_PRE_RELEASE
-        ? [
-            {
-              versionCode: import.meta.env.PUBLIC_MUSIC_PRE_RELEASE,
-              stable: false,
-              distributions: [
-                "github",
-                "google-playstore",
-              ] satisfies Distributor[],
-            },
-          ]
-        : []),
-    ],
+      preRelease:
+        MUSIC_LATEST_RELEASE !== MUSIC_LATEST_TAGGED_RELEASE
+          ? {
+              versionCode: MUSIC_LATEST_TAGGED_RELEASE,
+              distributors: ["github", "google-playstore"],
+            }
+          : undefined,
+    },
   },
 ];

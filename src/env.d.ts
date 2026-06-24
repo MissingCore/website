@@ -1,6 +1,6 @@
 interface ImportMetaEnv {
-  readonly PUBLIC_MUSIC_RELEASE: string;
-  readonly PUBLIC_MUSIC_PRE_RELEASE: string;
+  readonly PUBLIC_MUSIC_LATEST_TAG: string;
+  readonly PUBLIC_MUSIC_RECENT_TAG: string;
 }
 
 interface ImportMeta {

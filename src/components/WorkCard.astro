@@ -2,7 +2,7 @@
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-import type { Work } from "~/data/Works";
+import type { Release, Work } from "~/data/Works";
 
 import GlowBadge from "./GlowBadge.astro";
 import ReleaseLink from "./ReleaseLink.astro";
@@ -18,18 +18,23 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 const iconImgPath = `/src/assets/projects/${key}/icon.png`;
 if (!images[iconImgPath]) throw new Error(`"${iconImgPath}" does not exist.`);
 
-const formattedReleases = releases.map(({ distributions: dists, ...rest }) => {
+function formatRelease({ versionCode, distributors }: Release, stable = false) {
   return {
-    ...rest,
-    links: dists.map((distributor) => ({
+    versionCode: versionCode,
+    stable,
+    links: distributors.map((distributor) => ({
       distributor,
       link:
         distributor === "github"
-          ? `${distributions.github}/releases/${rest.versionCode}`
+          ? `${distributions.github}/releases/${versionCode}`
           : distributions["google-playstore"]!,
     })),
   };
-});
+}
+
+const formattedReleases = [formatRelease(releases.stable, true)];
+if (releases.preRelease)
+  formattedReleases.push(formatRelease(releases.preRelease));
 ---
 
 <article
