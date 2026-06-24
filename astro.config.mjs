@@ -33,7 +33,7 @@ export default defineConfig({
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/nynjara.woff2"],
+            src: ["./src/assets/fonts/nynjara/nynjara.woff2"],
             weight: "normal",
             style: "normal",
           },
@@ -47,7 +47,9 @@ export default defineConfig({
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf"],
+            src: [
+              "./src/assets/fonts/SpaceGrotesk/SpaceGrotesk-VariableFont_wght.ttf",
+            ],
             weight: "100 900",
             style: "normal",
           },
