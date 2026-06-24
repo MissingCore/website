@@ -1,19 +1,14 @@
 ---
 import Layout from "~/navigation/layouts/Layout.astro";
 
-import H1 from "~/components/MDX/H1.astro";
-import Text from "~/components/Text.astro";
+import CTA from "~/components/CTA.astro";
+import NavButton from "~/components/NavButton.astro";
 ---
 
 <Layout
   title="404: Page Not Found"
   description="Sorry, this page was not found."
-  class="gap-8"
 >
-  <H1>404: Page Not Found</H1>
-  <a
-    href="/"
-    class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 hover:bg-primaryDim"
-    ><Text class="text-onPrimary sm:text-base">Return Home</Text></a
-  >
+  <CTA headline="ERROR_404">Page Not Found</CTA>
+  <NavButton href="/" class="mt-16 text-sm sm:text-base">Return Home</NavButton>
 </Layout>

@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import type { Release, Work } from "~/data/Works";
 
 import GlowBadge from "./GlowBadge.astro";
+import NavButton from "./NavButton.astro";
 import ReleaseLink from "./ReleaseLink.astro";
 
 interface Props extends Work {}
@@ -87,12 +88,9 @@ if (releases.preRelease)
 
   {
     privacyPolicy ? (
-      <a
-        href={privacyPolicy}
-        class="rounded-full bg-primary px-3 py-2 text-center text-sm font-bold text-onPrimary uppercase"
-      >
+      <NavButton href={privacyPolicy} class="w-full text-sm">
         Privacy Policy
-      </a>
+      </NavButton>
     ) : null
   }
 </article>
