@@ -72,6 +72,22 @@ export const OpenSource: Work[] = [
     },
   },
   {
+    name: "music-glyph-toys",
+    description:
+      "🧪 An experimental package adding Glyph Matrix support to the MissingCore Music app via a React Native Turbo Native Module.",
+    tags: ["archived", "package"],
+    distributions: {
+      github: "https://github.com/MissingCore/music-glyph-toys",
+    },
+    releases: {
+      preRelease: {
+        versionCode: "v0.4.1",
+        distributors: ["github"],
+      },
+    },
+    archived: true,
+  },
+  {
     name: "audio-metadata",
     description:
       "An audio file metadata reader built primarily for React Native.",
