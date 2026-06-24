@@ -5,6 +5,7 @@ import type { ComponentProps } from "astro/types";
 
 import "~/assets/global.css";
 import { cn } from "~/lib/style";
+import LightBar from "~/components/LightBar.astro";
 import MetaHead from "../components/MetaHead.astro";
 
 interface Props extends ComponentProps<typeof MetaHead> {
@@ -26,9 +27,14 @@ const { class: className, ...rest } = Astro.props;
   <body
     class="flex min-h-svh overflow-x-clip bg-n-0 font-space-grotesk text-n-100"
   >
+    <div class="hidden flex-row gap-4 pl-16 sm:flex">
+      <LightBar height={256} />
+      <LightBar height={512} delayMS={500} />
+      <LightBar height={368} delayMS={750} />
+    </div>
     <main
       class:list={cn(
-        "relative mx-auto flex w-full flex-col gap-6 px-16 py-48",
+        "relative mx-auto flex w-full flex-col gap-6 px-4 py-32 sm:px-16 sm:py-48",
         className,
       )}
     >
