@@ -3,19 +3,24 @@ import { Works } from "~/data/Works";
 
 import Layout from "~/navigation/layouts/Layout.astro";
 
+import HorizontalListContainer from "~/components/HorizontalListContainer.astro";
 import WorkCard from "~/components/WorkCard.astro";
 ---
 
 <Layout title="MissingCore" description="Building free, open-source apps.">
-  <h1 class="font-nynjara text-4xl sm:mt-16 sm:text-7xl">MissingCore</h1>
+  <h1 class="font-nynjara text-4xl wrap-break-word sm:mt-16 sm:text-7xl">
+    MissingCore
+  </h1>
   <p class="text-lg text-n-70 sm:text-3xl">
     Building <span class="text-r-50 text-shadow-glow">free</span>, <span
       class="text-r-50 text-shadow-glow">open-source</span
     > apps.
   </p>
 
-  <h2 class="mt-32 font-nynjara text-lg uppercase sm:text-3xl">Work</h2>
-  <div class="-ml-4 flex flex-row gap-6 overflow-x-auto overflow-y-clip p-4">
+  <h2 class="mt-16 font-nynjara text-2xl uppercase sm:mt-32 sm:text-3xl">
+    Work
+  </h2>
+  <HorizontalListContainer>
     {Works.map((work) => <WorkCard {...work} />)}
-  </div>
+  </HorizontalListContainer>
 </Layout>

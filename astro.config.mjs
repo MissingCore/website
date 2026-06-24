@@ -54,5 +54,19 @@ export default defineConfig({
         ],
       },
     },
+    {
+      provider: fontProviders.local(),
+      name: "NType-82",
+      cssVariable: "--font-ntype82",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/NType82-Headline.otf"],
+            weight: "normal",
+            style: "normal",
+          },
+        ],
+      },
+    },
   ],
 });
