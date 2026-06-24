@@ -13,7 +13,7 @@ import Ul from "~/components/MDX/Ul.astro";
 import Strong from "~/components/MDX/Strong.astro";
 ---
 
-<Layout {...frontmatter as MDXFrontmatter} class="items-start">
+<Layout {...frontmatter as MDXFrontmatter}>
   <Content
     components={{
       a: A,
@@ -28,7 +28,7 @@ import Strong from "~/components/MDX/Strong.astro";
   <Divider />
   <p>
     <span class="font-semibold underline">Note:</span>
-    This mirrors the policy found <A
+    {" "}This mirrors the policy found <A
       href="https://github.com/MissingCore/Music/blob/main/PRIVACY_POLICY.md"
       >in the repository</A
     >.
