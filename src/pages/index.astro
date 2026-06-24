@@ -4,8 +4,7 @@ import { OpenSource, Works } from "~/data/Works";
 import Layout from "~/navigation/layouts/Layout.astro";
 
 import CTA from "~/components/CTA.astro";
-import HorizontalListContainer from "~/components/HorizontalListContainer.astro";
-import WorkCard from "~/components/WorkCard.astro";
+import WorkSection from "~/components/WorkSection.astro";
 ---
 
 <Layout title="MissingCore" description="Building free, open-source apps.">
@@ -17,15 +16,6 @@ import WorkCard from "~/components/WorkCard.astro";
     > apps.</CTA
   >
 
-  <h2 class="mt-16 font-nynjara text-2xl uppercase sm:mt-32 sm:text-3xl">
-    Work
-  </h2>
-  <HorizontalListContainer>
-    {Works.map((work) => <WorkCard {...work} />)}
-  </HorizontalListContainer>
-
-  <h2 class="mt-16 font-nynjara text-2xl uppercase sm:text-3xl">Open-Source</h2>
-  <HorizontalListContainer>
-    {OpenSource.map((work) => <WorkCard {...work} />)}
-  </HorizontalListContainer>
+  <WorkSection label="Work" works={Works} class="mt-16 sm:mt-32" />
+  <WorkSection label="Open-Source" works={OpenSource} class="mt-16" />
 </Layout>
