@@ -37,8 +37,10 @@
   --font-nynjara: var(--font-nynjara);
   --font-space-grotesk: var(--font-space-grotesk);
 
-  --shadow-glow: 0 0 10px;
-  --text-shadow-glow: 0 0 10px;
+  --shadow-glow: 0 0 8px;
+  --shadow-glow-lg: 0 0 16px;
+  --text-shadow-glow: 0 0 8px;
+  --text-shadow-glow-lg: 0 0 16px;
 }
 
 @layer base {
