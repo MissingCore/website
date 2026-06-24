@@ -19,7 +19,7 @@ export interface Work {
     npm?: string;
   };
   releases: {
-    stable: Release;
+    stable?: Release;
     preRelease?: Release;
   };
   privacyPolicy?: string;

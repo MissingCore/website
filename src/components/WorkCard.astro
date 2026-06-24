@@ -30,25 +30,23 @@ if (key) {
   if (!images[imgSrc]) throw new Error(`"${imgSrc}" does not exist.`);
 }
 
-function formatRelease({ versionCode, distributors }: Release, stable = false) {
-  return {
-    versionCode: versionCode,
-    stable,
-    links: distributors.map((distributor) => ({
-      distributor,
-      link:
-        distributor === "github"
-          ? `${distributions.github}/releases/${versionCode}`
-          : distributor === "google-playstore"
-            ? distributions["google-playstore"]!
-            : distributions["npm"]!,
-    })),
-  };
-}
-
-const formattedReleases = [formatRelease(releases.stable, true)];
-if (releases.preRelease)
-  formattedReleases.push(formatRelease(releases.preRelease));
+const formattedReleases = Object.entries(releases)
+  .map(([key, release]) => {
+    if (!release) return;
+    const { versionCode, distributors } = release;
+    return {
+      versionCode: versionCode,
+      stable: key === "stable",
+      links: distributors.map((distributor) => ({
+        distributor,
+        link:
+          distributor === "github"
+            ? `${distributions.github}/releases/${versionCode}`
+            : distributions[distributor]!,
+      })),
+    };
+  })
+  .filter((release) => release !== undefined);
 ---
 
 <article class="flex flex-col gap-8 rounded-xl p-4 shadow-glow shadow-outline">
