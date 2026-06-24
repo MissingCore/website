@@ -6,6 +6,7 @@ import type { ComponentProps } from "astro/types";
 import "~/assets/global.css";
 import { cn } from "~/lib/style";
 import LightBar from "~/components/LightBar.astro";
+import Footer from "../components/Footer.astro";
 import MetaHead from "../components/MetaHead.astro";
 
 interface Props extends ComponentProps<typeof MetaHead> {
@@ -28,7 +29,7 @@ const { class: className, ...rest } = Astro.props;
   <body
     class="noise flex min-h-svh overflow-x-clip bg-n-0 font-space-grotesk text-n-100"
   >
-    <div class="hidden flex-row gap-4 pl-16 sm:flex">
+    <div class="hidden gap-4 pl-16 sm:flex">
       <LightBar height={256} />
       <LightBar height={512} delayMS={500} />
       <LightBar height={368} delayMS={750} />
@@ -40,11 +41,8 @@ const { class: className, ...rest } = Astro.props;
       )}
     >
       <slot />
-
       <div class="mt-auto">
-        <footer class="mt-16 border-t-2 border-n-100 py-16">
-          <p>&copy; {new Date().getFullYear()} MissingCore</p>
-        </footer>
+        <Footer class="mt-16" />
       </div>
     </main>
   </body>
