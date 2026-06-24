@@ -12,8 +12,10 @@ import WorkCard from "~/components/WorkCard.astro";
     MissingCore
   </h1>
   <p class="text-lg text-n-70 sm:text-3xl">
-    Building <span class="text-r-50 text-shadow-glow">free</span>, <span
-      class="text-r-50 text-shadow-glow">open-source</span
+    Building <span class="text-r-50 text-shadow-glow">free</span>, <a
+      href="https://github.com/MissingCore"
+      target="_blank"
+      class="text-r-50 underline text-shadow-glow">open-source</a
     > apps.
   </p>
 
@@ -24,9 +26,7 @@ import WorkCard from "~/components/WorkCard.astro";
     {Works.map((work) => <WorkCard {...work} />)}
   </HorizontalListContainer>
 
-  <h2 class="mt-16 font-nynjara text-2xl uppercase sm:text-3xl">
-    Open-Source
-  </h2>
+  <h2 class="mt-16 font-nynjara text-2xl uppercase sm:text-3xl">Open-Source</h2>
   <HorizontalListContainer>
     {OpenSource.map((work) => <WorkCard {...work} />)}
   </HorizontalListContainer>

@@ -35,11 +35,17 @@ const { class: className, ...rest } = Astro.props;
     </div>
     <main
       class:list={cn(
-        "relative flex w-full min-w-0 flex-col gap-6 px-4 py-32 sm:px-16 sm:py-48",
+        "relative flex w-full min-w-0 flex-col gap-6 px-4 pt-32 sm:px-16 sm:pt-48",
         className,
       )}
     >
       <slot />
+
+      <div class="mt-auto">
+        <footer class="mt-16 border-t-2 border-n-100 py-16">
+          <p>&copy; {new Date().getFullYear()} MissingCore</p>
+        </footer>
+      </div>
     </main>
   </body>
 </html>
