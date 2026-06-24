@@ -26,7 +26,7 @@ const { versionCode, stable, links } = Astro.props;
     {
       links.map(({ distributor, link }) => (
         <a aria-label={`${distributor} listing`} href={link} target="_blank">
-          <Icon name={`logo-${distributor}`} class="size-6 text-n-100" />
+          <Icon name={`logo-${distributor}`} class="size-6" />
         </a>
       ))
     }

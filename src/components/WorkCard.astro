@@ -50,20 +50,22 @@ if (releases.preRelease)
   formattedReleases.push(formatRelease(releases.preRelease));
 ---
 
-<article class="flex flex-col gap-8 rounded-xl p-4 shadow-glow shadow-n-30">
+<article class="flex flex-col gap-8 rounded-xl p-4 shadow-glow shadow-outline">
   <header class="flex items-center gap-4">
     {
       imgSrc ? (
         <Image
           src={images[imgSrc]()}
           alt={`${name} app icon.`}
-          class="size-16 rounded-xl shadow-glow shadow-n-15"
+          class="size-16 rounded-xl shadow-glow shadow-outlineVariant"
         />
       ) : null
     }
     <div class="min-w-0 flex-1 gap-2">
       <h3 class="truncate font-ntype82 text-xl sm:text-2xl">{name}</h3>
-      <p class="truncate text-xs text-n-70 uppercase">{tags.join(" • ")}</p>
+      <p class="truncate text-xs text-onSurfaceDim uppercase">
+        {tags.join(" • ")}
+      </p>
     </div>
     {
       !archived ? (
@@ -87,7 +89,7 @@ if (releases.preRelease)
     privacyPolicy ? (
       <a
         href={privacyPolicy}
-        class="rounded-full bg-r-50 px-3 py-2 text-center text-sm font-bold text-n-100 uppercase"
+        class="rounded-full bg-primary px-3 py-2 text-center text-sm font-bold text-onPrimary uppercase"
       >
         Privacy Policy
       </a>

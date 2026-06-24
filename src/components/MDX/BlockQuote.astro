@@ -10,8 +10,8 @@ const { class: className } = Astro.props;
 
 <blockquote
   class:list={cn(
-    "border-l-2 border-l-r-50 pl-2 text-sm font-semibold text-n-95",
-    className
+    "border-l-2 border-l-primary pl-2 text-sm font-semibold text-onSurfaceVariant",
+    className,
   )}
 >
   <slot />

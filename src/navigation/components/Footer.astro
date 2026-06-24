@@ -8,6 +8,6 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<footer class={cn("border-t-2 border-n-100 py-16", className)}>
+<footer class={cn("border-t-2 border-outlineVariant py-16", className)}>
   <p>&copy; {new Date().getFullYear()} MissingCore</p>
 </footer>

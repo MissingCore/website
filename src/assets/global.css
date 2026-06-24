@@ -34,6 +34,17 @@
   --color-b: hsl(239 49% 32%);
   --color-g: hsl(144 71% 41%);
 
+  --color-surface: var(--color-n-0);
+  --color-surfaceContainer: var(--color-n-10);
+  --color-onSurface: var(--color-n-100);
+  --color-onSurfaceVariant: var(--color-n-80);
+  --color-onSurfaceDim: var(--color-n-70);
+  --color-primary: var(--color-r-50);
+  --color-primaryDim: var(--color-r-50);
+  --color-onPrimary: var(--color-n-100);
+  --color-outline: var(--color-n-30);
+  --color-outlineVariant: var(--color-n-15);
+
   --font-ntype82: var(--font-ntype82);
   --font-nynjara: var(--font-nynjara);
   --font-space-grotesk: var(--font-space-grotesk);
