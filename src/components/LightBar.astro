@@ -68,7 +68,7 @@ const elementId = `light-bar-${Math.random().toString(36).slice(2, 11)}`;
   </div>
 </div>
 
-<script define:vars={{ elementId, webAnimationConfig }}>
+<script is:inline define:vars={{ elementId, webAnimationConfig }}>
   const lightBarEl = document.querySelector(
     `[data-light-bar-id="${elementId}"]`,
   );
