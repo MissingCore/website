@@ -9,14 +9,25 @@ import ReleaseLink from "./ReleaseLink.astro";
 
 interface Props extends Work {}
 
-const { key, name, description, tags, distributions, releases, privacyPolicy } =
-  Astro.props;
+const {
+  key,
+  name,
+  description,
+  tags,
+  distributions,
+  releases,
+  privacyPolicy,
+  archived,
+} = Astro.props;
 
+let imgSrc = null;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/projects/**/icon.png",
 );
-const iconImgPath = `/src/assets/projects/${key}/icon.png`;
-if (!images[iconImgPath]) throw new Error(`"${iconImgPath}" does not exist.`);
+if (key) {
+  imgSrc = `/src/assets/projects/${key}/icon.png`;
+  if (!images[imgSrc]) throw new Error(`"${imgSrc}" does not exist.`);
+}
 
 function formatRelease({ versionCode, distributors }: Release, stable = false) {
   return {
@@ -27,7 +38,9 @@ function formatRelease({ versionCode, distributors }: Release, stable = false) {
       link:
         distributor === "github"
           ? `${distributions.github}/releases/${versionCode}`
-          : distributions["google-playstore"]!,
+          : distributor === "google-playstore"
+            ? distributions["google-playstore"]!
+            : distributions["npm"]!,
     })),
   };
 }
@@ -37,25 +50,36 @@ if (releases.preRelease)
   formattedReleases.push(formatRelease(releases.preRelease));
 ---
 
-<article
-  class="flex aspect-video flex-col gap-8 rounded-xl p-4 shadow-glow shadow-n-30"
->
+<article class="flex flex-col gap-8 rounded-xl p-4 shadow-glow shadow-n-30">
   <header class="flex flex-row items-center gap-4">
-    <Image
-      src={images[iconImgPath]()}
-      alt={`${name} app icon.`}
-      class="size-16 rounded-xl shadow-glow shadow-n-15"
-    />
+    {
+      imgSrc ? (
+        <Image
+          src={images[imgSrc]()}
+          alt={`${name} app icon.`}
+          class="size-16 rounded-xl shadow-glow shadow-n-15"
+        />
+      ) : null
+    }
     <div class="min-w-0 flex-1 gap-2">
       <h3 class="truncate font-ntype82 text-xl sm:text-2xl">{name}</h3>
       <p class="truncate text-xs text-n-70 uppercase">{tags.join(" • ")}</p>
     </div>
-    <GlowBadge text="Live" color="#D71921" indicator class="hidden sm:flex" />
+    {
+      !archived ? (
+        <GlowBadge
+          text="Live"
+          color="#D71921"
+          indicator
+          class="hidden sm:flex"
+        />
+      ) : null
+    }
   </header>
 
   <p class="-mt-4">{description}</p>
 
-  <div class="space-y-4">
+  <div class="mt-auto space-y-4">
     {formattedReleases.map((release) => <ReleaseLink {...release} />)}
   </div>
 </article>

@@ -1,5 +1,5 @@
 ---
-import { Works } from "~/data/Works";
+import { OpenSource, Works } from "~/data/Works";
 
 import Layout from "~/navigation/layouts/Layout.astro";
 
@@ -22,5 +22,12 @@ import WorkCard from "~/components/WorkCard.astro";
   </h2>
   <HorizontalListContainer>
     {Works.map((work) => <WorkCard {...work} />)}
+  </HorizontalListContainer>
+
+  <h2 class="mt-16 font-nynjara text-2xl uppercase sm:text-3xl">
+    Open-Source
+  </h2>
+  <HorizontalListContainer>
+    {OpenSource.map((work) => <WorkCard {...work} />)}
   </HorizontalListContainer>
 </Layout>
