@@ -50,6 +50,7 @@ export const Works: Work[] = [
             }
           : undefined,
     },
+    privacyPolicy: "/music/privacy-policy",
   },
 ];
 
