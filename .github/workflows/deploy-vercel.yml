@@ -1,0 +1,18 @@
+name: Deploy to Vercel
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Vercel using Deploy Hook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run Deploy Hook
+        run: |
+          curl ${{ secrets.VERCEL_DEPLOY_HOOK }}
