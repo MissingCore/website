@@ -41,18 +41,26 @@ jobs:
 
       - name: Write versions to `.env.local` file and commit
         run: |
+          if [ -z "${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" ] || \
+             [ -z "${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" ]; then
+            echo "One or both tags are empty; skipping write/commit."
+            exit 1
+          fi
           echo "PUBLIC_MUSIC_LATEST_TAG=${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" > .env.local
           echo "PUBLIC_MUSIC_RECENT_TAG=${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" >> .env.local
-          
+
           git config user.name github-actions
           git config user.email github-actions@github.com
 
           # Commit changes to `.env.local`
           git add .env.local
-          
+
           # Capture current time and format it (YYYY-MM-DD HH:MM:SS)
           CURRENT_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
-          git commit -m "[ci] Automatic Version Check $CURRENT_TIME"
-          git push
-        continue-on-error: true
+          if git diff --cached --quiet; then
+            echo "No changes to .env.local; nothing to commit."
+          else
+            git commit -m "[ci] Automatic Version Check $CURRENT_TIME"
+            git push
+          fi
