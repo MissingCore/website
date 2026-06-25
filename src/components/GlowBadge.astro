@@ -1,0 +1,23 @@
+---
+import { cn } from "~/lib/style";
+
+interface Props {
+  text: string;
+  color: `#${string}`;
+  indicator?: boolean;
+  class?: string;
+}
+
+const { text, color, indicator, class: className } = Astro.props;
+---
+
+<div
+  style={{ "--bdg-clr": color }}
+  class:list={cn(
+    "flex h-min items-center gap-2 rounded-full px-3 py-1 text-(--bdg-clr) shadow-glow ring",
+    className,
+  )}
+>
+  {indicator ? <div class="size-1 rounded-full bg-(--bdg-clr)" /> : null}
+  <p class="text-xs font-bold uppercase">{text}</p>
+</div>

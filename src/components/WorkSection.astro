@@ -1,0 +1,22 @@
+---
+import type { Work } from "~/data/Works";
+
+import { cn } from "~/lib/style";
+import HorizontalListContainer from "./HorizontalListContainer.astro";
+import WorkCard from "./WorkCard.astro";
+
+interface Props {
+  label: string;
+  works: Work[];
+  class?: string;
+}
+
+const { label, works, class: className } = Astro.props;
+---
+
+<section class={cn("space-y-8", className)}>
+  <h2 class="font-nynjara text-2xl uppercase sm:text-3xl">{label}</h2>
+  <HorizontalListContainer>
+    {works.map(work=><WorkCard {...work}/>)}
+  </HorizontalListContainer>
+</section>

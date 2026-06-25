@@ -5,21 +5,33 @@ import { extendTailwindMerge } from "tailwind-merge";
 const sharedColorPalette = [10, 20, 30, 40, 50, 60, 70, 80, 90];
 const nColorPalette = [...sharedColorPalette, 0, 15, 95, 100];
 const rColorPalette = [...sharedColorPalette, 55];
+const yColorPalette = [10, 50, 60];
 
 const customTwMerge = extendTailwindMerge({
   extend: {
     theme: {
       color: [
-        "canvas",
-        "surface",
-        "content",
-        "accent",
         nColorPalette.map((light) => `n-${light}`),
         rColorPalette.map((light) => `r-${light}`),
-        "y",
+        yColorPalette.map((light) => `y-${light}`),
         "b",
         "g",
+        "surface",
+        "surfaceContainer",
+        "onSurface",
+        "onSurfaceVariant",
+        "onSurfaceDim",
+        "primary",
+        "primaryDim",
+        "onPrimary",
+        "outline",
+        "outlineVariant",
       ].flat(),
+    },
+    classGroups: {
+      "font-family": ["ntype82", "nynjara", "space-grotesk"],
+      shadow: ["glow", "glow-lg"],
+      "text-shadow": ["glow", "glow-lg"],
     },
   },
 });

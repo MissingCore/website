@@ -1,0 +1,20 @@
+---
+import { cn } from "~/lib/style";
+
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  class={cn(
+    "w-fit rounded-full bg-primary px-6 py-3 text-center font-bold text-onPrimary uppercase hover:bg-primaryDim transition-colors",
+    className,
+  )}
+>
+  <slot />
+</a>

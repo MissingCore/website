@@ -15,7 +15,7 @@ const isExternalLink = href.startsWith("https://");
   href={href}
   {...isExternalLink ? { target: "_blank" } : {}}
   class:list={cn(
-    "text-n-90 underline decoration-r-50 decoration-wavy hover:opacity-85",
-    className
+    "text-onSurfaceVariant underline decoration-primary decoration-wavy hover:opacity-85",
+    className,
   )}><slot /></a
 >

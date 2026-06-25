@@ -1,0 +1,94 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+import type { Work } from "~/data/Works";
+
+import GlowBadge from "./GlowBadge.astro";
+import NavButton from "./NavButton.astro";
+import ReleaseLink from "./ReleaseLink.astro";
+
+interface Props extends Work {}
+
+const {
+  key,
+  name,
+  description,
+  tags,
+  distributions,
+  releases,
+  privacyPolicy,
+  archived,
+} = Astro.props;
+
+let imgSrc = null;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/projects/**/icon.png",
+);
+if (key) {
+  imgSrc = `/src/assets/projects/${key}/icon.png`;
+  if (!images[imgSrc]) throw new Error(`"${imgSrc}" does not exist.`);
+}
+
+const formattedReleases = Object.entries(releases)
+  .map(([key, release]) => {
+    if (!release) return;
+    const { versionCode, distributors } = release;
+    return {
+      versionCode: versionCode,
+      stable: key === "stable",
+      links: distributors.map((distributor) => ({
+        distributor,
+        link:
+          distributor === "github"
+            ? `${distributions.github}/releases/${versionCode}`
+            : distributions[distributor]!,
+      })),
+    };
+  })
+  .filter((release) => release !== undefined);
+---
+
+<article class="flex flex-col gap-8 rounded-xl p-4 shadow-glow shadow-outline">
+  <header class="flex items-center gap-4">
+    {
+      imgSrc ? (
+        <Image
+          src={images[imgSrc]()}
+          alt={`${name} app icon.`}
+          class="size-16 rounded-xl shadow-glow shadow-outlineVariant"
+        />
+      ) : null
+    }
+    <div class="min-w-0 flex-1 gap-2">
+      <h3 class="truncate font-ntype82 text-xl sm:text-2xl">{name}</h3>
+      <p class="truncate text-xs text-onSurfaceDim uppercase">
+        {tags.join(" • ")}
+      </p>
+    </div>
+    {
+      !archived ? (
+        <GlowBadge
+          text="Live"
+          color="#D71921"
+          indicator
+          class="hidden sm:flex"
+        />
+      ) : null
+    }
+  </header>
+
+  <p class="-mt-4">{description}</p>
+
+  <div class="mt-auto space-y-4">
+    {formattedReleases.map((release) => <ReleaseLink {...release} />)}
+  </div>
+
+  {
+    privacyPolicy ? (
+      <NavButton href={privacyPolicy} class="w-full text-sm">
+        Privacy Policy
+      </NavButton>
+    ) : null
+  }
+</article>

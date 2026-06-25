@@ -1,0 +1,83 @@
+---
+interface Props {
+  /** Container height (in `px`). */
+  height: number;
+  /** Height of the "light" that gets animated (in `px`). */
+  lightBarHeight?: number;
+  /** Delay in ms before we start the animation. */
+  delayMS?: number;
+  /** Time in ms we wait before starting the next iteration. */
+  restDurationMS?: number;
+}
+
+const {
+  height,
+  lightBarHeight = 128,
+  delayMS = 0,
+  restDurationMS = 2500,
+} = Astro.props;
+
+// Time it'll take for the full-height light bar to touch the bottom of the container.
+const TIME_TO_END = (height - lightBarHeight) / lightBarHeight;
+
+// We'll make the time to "grow" and "collapse" the light bar `1s` each.
+const TOTAL_ANIMATION_DURATION = 2 + TIME_TO_END + restDurationMS / 1000;
+// Percentage representing `1s` in total animation duration.
+const SECOND_PERCENT = 1 / TOTAL_ANIMATION_DURATION;
+
+const webAnimationConfig = [
+  [
+    { height: "0px", transform: "translateY(0)", offset: 0 },
+    {
+      height: `${lightBarHeight}px`,
+      transform: "translateY(0)",
+      offset: SECOND_PERCENT,
+    },
+    {
+      height: `${lightBarHeight}px`,
+      transform: "translateY(calc(100cqh - 100%))",
+      offset: SECOND_PERCENT * (1 + TIME_TO_END),
+    },
+    {
+      height: "0px",
+      transform: "translateY(calc(100cqh - 100%))",
+      offset: SECOND_PERCENT * (2 + TIME_TO_END),
+    },
+    { height: "0px", transform: "translateY(calc(100cqh - 100%))", offset: 1 },
+  ],
+  {
+    duration: TOTAL_ANIMATION_DURATION * 1000,
+    delay: delayMS,
+    easing: "linear",
+  },
+] as const;
+
+// Generate unique id for each `<LightBar />` entry so that the correct
+// timed animation is applied.
+const elementId = `light-bar-${Math.random().toString(36).slice(2, 11)}`;
+---
+
+<div
+  style={{ height: `${height}px` }}
+  class="@container-size w-1 rounded-b-full bg-surfaceContainer"
+>
+  <div
+    data-light-bar-id={elementId}
+    class="w-full rounded-full bg-primary shadow-glow-lg shadow-primary"
+  >
+  </div>
+</div>
+
+<script is:inline define:vars={{ elementId, webAnimationConfig }}>
+  const lightBarEl = document.querySelector(
+    `[data-light-bar-id="${elementId}"]`,
+  );
+
+  if (lightBarEl) {
+    lightBarEl.animate(webAnimationConfig[0], {
+      ...webAnimationConfig[1],
+      // `Infinity` will get serialized to `null`.
+      iterations: Infinity,
+    });
+  }
+</script>

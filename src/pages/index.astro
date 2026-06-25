@@ -1,5 +1,21 @@
 ---
-import PageBuilder from "~/navigation/components/PageBuilder.astro";
+import { OpenSource, Works } from "~/data/Works";
+
+import Layout from "~/navigation/layouts/Layout.astro";
+
+import CTA from "~/components/CTA.astro";
+import WorkSection from "~/components/WorkSection.astro";
 ---
 
-<PageBuilder route="/" />
+<Layout title="MissingCore" description="Building free, open-source apps.">
+  <CTA headline="MissingCore"
+    >Building <span class="text-primary text-shadow-glow">free</span>, <a
+      href="https://github.com/MissingCore"
+      target="_blank"
+      class="text-primary underline text-shadow-glow">open-source</a
+    > apps.</CTA
+  >
+
+  <WorkSection label="Work" works={Works} class="mt-16 sm:mt-32" />
+  <WorkSection label="Open-Source" works={OpenSource} class="mt-16" />
+</Layout>
