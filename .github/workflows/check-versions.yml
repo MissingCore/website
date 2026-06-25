@@ -1,0 +1,29 @@
+name: Automatic Version Checks
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+jobs:
+  checkAppVersions:
+    name: Check for current app versions and re-build site if they changed
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Query releases from MissingCore Music
+        run: |
+          echo "MUSIC_LATEST_TAG=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            /repos/MissingCore/Music/releases/latest
+            --jq '.tag_name')" >> $GITHUB_ENV
+          echo "MUSIC_RECENT_TAG=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            /repos/MissingCore/Music/releases?per_page=1
+            --jq '.[0].tag_name')" >> $GITHUB_ENV
+          echo "Latest Tag: $MUSIC_LATEST_TAG, Most Recent Tag: $MUSIC_LATEST_TAG"
