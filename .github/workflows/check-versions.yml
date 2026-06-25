@@ -38,3 +38,20 @@ jobs:
           echo "MUSIC_RECENT_TAG=$MUSIC_RECENT_TAG" >> "$GITHUB_OUTPUT"
 
           echo "Latest Tag: ${MUSIC_LATEST_TAG:-none}, Most Recent Tag: ${MUSIC_RECENT_TAG:-none}"
+
+      - name: Write versions to `.env.local` file and commit
+        run: |
+          echo "PUBLIC_MUSIC_LATEST_TAG=${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" > .env.local
+          echo "PUBLIC_MUSIC_RECENT_TAG=${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" >> .env.local
+          
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          # Commit changes to `.env.local`
+          git add .env.local
+          
+          # Capture current time and format it (YYYY-MM-DD HH:MM:SS)
+          CURRENT_TIME=$(date +"%Y-%m-%d %H:%M:%S")
+
+          git commit -m "[ci] Automatic Version Check $CURRENT_TIME"
+          git push
