@@ -8,6 +8,8 @@ jobs:
   checkAppVersions:
     name: Check for current app versions and re-build site if they changed
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
     steps:
