@@ -19,17 +19,22 @@ jobs:
       - name: Query releases from MissingCore Music
         id: music_versions
         run: |
-          echo "MUSIC_LATEST_TAG=$(gh release list \
+          MUSIC_LATEST_TAG=$(gh release list \
             --repo MissingCore/Music \
             --exclude-drafts \
             --exclude-pre-releases \
             --limit 1 \
             --json tagName \
-            --jq '.[0].tagName')" >> $GITHUB_OUTPUT
-          echo "MUSIC_RECENT_TAG=$(gh release list \
+            --jq '.[0].tagName // empty')
+
+          MUSIC_RECENT_TAG=$(gh release list \
             --repo MissingCore/Music \
             --exclude-drafts \
             --limit 1 \
             --json tagName \
-            --jq '.[0].tagName')" >> $GITHUB_OUTPUT
-          echo "Latest Tag: ${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}, Most Recent Tag: ${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}"
+            --jq '.[0].tagName // empty')
+
+          echo "MUSIC_LATEST_TAG=$MUSIC_LATEST_TAG" >> "$GITHUB_OUTPUT"
+          echo "MUSIC_RECENT_TAG=$MUSIC_RECENT_TAG" >> "$GITHUB_OUTPUT"
+
+          echo "Latest Tag: ${MUSIC_LATEST_TAG:-none}, Most Recent Tag: ${MUSIC_RECENT_TAG:-none}"
