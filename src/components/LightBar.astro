@@ -69,15 +69,17 @@ const elementId = `light-bar-${Math.random().toString(36).slice(2, 11)}`;
 </div>
 
 <script is:inline define:vars={{ elementId, webAnimationConfig }}>
-  const lightBarEl = document.querySelector(
-    `[data-light-bar-id="${elementId}"]`,
-  );
+  document.addEventListener("astro:page-load", () => {
+    const lightBarEl = document.querySelector(
+      `[data-light-bar-id="${elementId}"]`,
+    );
 
-  if (lightBarEl) {
-    lightBarEl.animate(webAnimationConfig[0], {
-      ...webAnimationConfig[1],
-      // `Infinity` will get serialized to `null`.
-      iterations: Infinity,
-    });
-  }
+    if (lightBarEl) {
+      lightBarEl.animate(webAnimationConfig[0], {
+        ...webAnimationConfig[1],
+        // `Infinity` will get serialized to `null`.
+        iterations: Infinity,
+      });
+    }
+  });
 </script>
