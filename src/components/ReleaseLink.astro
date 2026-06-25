@@ -13,22 +13,19 @@ interface Props {
 const { versionCode, stable, links } = Astro.props;
 ---
 
-<div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-  <div class="flex items-center gap-4">
-    <p class="font-ntype82 text-xl">{versionCode}</p>
-    <GlowBadge
-      text={stable ? "Stable" : "Pre-Release"}
-      color={stable ? "#1DB159" : "#FF6600"}
-      indicator={false}
-    />
-  </div>
-  <div class="flex items-center gap-4">
-    {
-      links.map(({ distributor, link }) => (
-        <a aria-label={`${distributor} listing`} href={link} target="_blank">
-          <Icon name={`logo-${distributor}`} class="size-6" />
-        </a>
-      ))
-    }
-  </div>
+<div class="flex items-center gap-4">
+  <p class="font-ntype82 text-xl">{versionCode}</p>
+  <GlowBadge
+    text={stable ? "Stable" : "Pre-Release"}
+    color={stable ? "#1DB159" : "#FF6600"}
+    indicator={false}
+    class="mr-auto"
+  />
+  {
+    links.map(({ distributor, link }) => (
+      <a aria-label={`${distributor} listing`} href={link} target="_blank">
+        <Icon name={`logo-${distributor}`} class="size-6" />
+      </a>
+    ))
+  }
 </div>
