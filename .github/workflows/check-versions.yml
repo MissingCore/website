@@ -8,6 +8,8 @@ jobs:
   checkAppVersions:
     name: Check for current app versions and re-build site if they changed
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
     steps:
@@ -15,15 +17,50 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Query releases from MissingCore Music
+        id: music_versions
         run: |
-          echo "MUSIC_LATEST_TAG=$(gh api \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            /repos/MissingCore/Music/releases/latest
-            --jq '.tag_name')" >> $GITHUB_ENV
-          echo "MUSIC_RECENT_TAG=$(gh api \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            /repos/MissingCore/Music/releases?per_page=1
-            --jq '.[0].tag_name')" >> $GITHUB_ENV
-          echo "Latest Tag: $MUSIC_LATEST_TAG, Most Recent Tag: $MUSIC_LATEST_TAG"
+          MUSIC_LATEST_TAG=$(gh release list \
+            --repo MissingCore/Music \
+            --exclude-drafts \
+            --exclude-pre-releases \
+            --limit 1 \
+            --json tagName \
+            --jq '.[0].tagName // empty')
+
+          MUSIC_RECENT_TAG=$(gh release list \
+            --repo MissingCore/Music \
+            --exclude-drafts \
+            --limit 1 \
+            --json tagName \
+            --jq '.[0].tagName // empty')
+
+          echo "MUSIC_LATEST_TAG=$MUSIC_LATEST_TAG" >> "$GITHUB_OUTPUT"
+          echo "MUSIC_RECENT_TAG=$MUSIC_RECENT_TAG" >> "$GITHUB_OUTPUT"
+
+          echo "Latest Tag: ${MUSIC_LATEST_TAG:-none}, Most Recent Tag: ${MUSIC_RECENT_TAG:-none}"
+
+      - name: Write versions to `.env.local` file and commit
+        run: |
+          if [ -z "${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" ] || \
+             [ -z "${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" ]; then
+            echo "One or both tags are empty; skipping write/commit."
+            exit 1
+          fi
+          echo "PUBLIC_MUSIC_LATEST_TAG=${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" > .env.local
+          echo "PUBLIC_MUSIC_RECENT_TAG=${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" >> .env.local
+
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          # Commit changes to `.env.local`
+          git add .env.local
+
+          # Capture current time and format it (YYYY-MM-DD HH:MM:SS)
+          CURRENT_TIME=$(date +"%Y-%m-%d %H:%M:%S")
+
+          if git diff --cached --quiet; then
+            echo "No changes to .env.local; nothing to commit."
+          else
+            git commit -m "[ci] Automatic Version Check $CURRENT_TIME"
+            git push
+          fi
