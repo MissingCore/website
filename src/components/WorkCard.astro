@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 import type { Work } from "~/data/Works";
 
@@ -85,10 +86,22 @@ const formattedReleases = Object.entries(releases)
   </div>
 
   {
-    privacyPolicy ? (
-      <NavButton href={privacyPolicy} class="w-full text-sm">
-        Privacy Policy
-      </NavButton>
+    slug || privacyPolicy ? (
+      <div class="flex gap-2">
+        {privacyPolicy ? (
+          <NavButton href={privacyPolicy} class="w-full text-sm">
+            Privacy Policy
+          </NavButton>
+        ) : null}
+        {slug ? (
+          <a
+            href={`/${slug}`}
+            class="flex aspect-square items-center justify-center rounded-full bg-secondary p-2 text-onSecondary hover:bg-secondaryDim"
+          >
+            <Icon name="information-circle-outline" class="size-6" />
+          </a>
+        ) : null}
+      </div>
     ) : null
   }
 </article>
