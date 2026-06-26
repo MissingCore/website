@@ -53,6 +53,11 @@
   --font-nynjara: var(--font-nynjara);
   --font-space-grotesk: var(--font-space-grotesk);
 
+  --text-scaling-title: clamp(var(--text-4xl), 12.5cqw, var(--text-7xl));
+  --text-scaling-title--line-height: 1;
+  --text-scaling-subTitle: clamp(var(--text-lg), 5cqw, var(--text-2xl));
+  --text-scaling-subTitle--line-height: 1;
+
   --shadow-glow: 0 0 8px;
   --shadow-glow-lg: 0 0 16px;
   --text-shadow-glow: 0 0 8px;

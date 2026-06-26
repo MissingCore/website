@@ -33,6 +33,7 @@ const customTwMerge = extendTailwindMerge({
     },
     classGroups: {
       "font-family": ["ntype82", "nynjara", "space-grotesk"],
+      "font-size": ["scaling-title", "scaling-subTitle"],
       shadow: ["glow", "glow-lg"],
       "text-shadow": ["glow", "glow-lg"],
     },
