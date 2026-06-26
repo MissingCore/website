@@ -1,8 +1,10 @@
 ---
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 import type { Work } from "~/data/Works";
+import { formatReleases } from "~/data/Works.utils";
 
 import GlowBadge from "./GlowBadge.astro";
 import NavButton from "./NavButton.astro";
@@ -11,7 +13,7 @@ import ReleaseLink from "./ReleaseLink.astro";
 interface Props extends Work {}
 
 const {
-  key,
+  slug,
   name,
   description,
   tags,
@@ -25,28 +27,12 @@ let imgSrc = null;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/projects/**/icon.png",
 );
-if (key) {
-  imgSrc = `/src/assets/projects/${key}/icon.png`;
+if (slug) {
+  imgSrc = `/src/assets/projects/${slug}/icon.png`;
   if (!images[imgSrc]) throw new Error(`"${imgSrc}" does not exist.`);
 }
 
-const formattedReleases = Object.entries(releases)
-  .map(([key, release]) => {
-    if (!release) return;
-    const { versionCode, distributors } = release;
-    return {
-      versionCode: versionCode,
-      stable: key === "stable",
-      links: distributors.map((distributor) => ({
-        distributor,
-        link:
-          distributor === "github"
-            ? `${distributions.github}/releases/${versionCode}`
-            : distributions[distributor]!,
-      })),
-    };
-  })
-  .filter((release) => release !== undefined);
+const formattedReleases = formatReleases(releases, distributions);
 ---
 
 <article class="flex flex-col gap-8 rounded-xl p-4 shadow-glow shadow-outline">
@@ -66,16 +52,7 @@ const formattedReleases = Object.entries(releases)
         {tags.join(" • ")}
       </p>
     </div>
-    {
-      !archived ? (
-        <GlowBadge
-          text="Live"
-          color="#D71921"
-          indicator
-          class="hidden sm:flex"
-        />
-      ) : null
-    }
+    {!archived ? <GlowBadge text="Live" color="#D71921" indicator /> : null}
   </header>
 
   <p class="-mt-4">{description}</p>
@@ -85,10 +62,23 @@ const formattedReleases = Object.entries(releases)
   </div>
 
   {
-    privacyPolicy ? (
-      <NavButton href={privacyPolicy} class="w-full text-sm">
-        Privacy Policy
-      </NavButton>
+    slug || privacyPolicy ? (
+      <div class="flex gap-2">
+        {privacyPolicy ? (
+          <NavButton href={privacyPolicy} class="w-full text-sm">
+            Privacy Policy
+          </NavButton>
+        ) : null}
+        {slug ? (
+          <a
+            aria-label={`Learn more about ${name}.`}
+            href={`/${slug}`}
+            class="flex aspect-square items-center justify-center rounded-full bg-secondary p-2 text-onSecondary hover:bg-secondaryDim"
+          >
+            <Icon name="information-circle-outline" class="size-6" />
+          </a>
+        ) : null}
+      </div>
     ) : null
   }
 </article>

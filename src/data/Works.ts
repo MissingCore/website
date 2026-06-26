@@ -8,12 +8,16 @@ export type Release = {
 };
 
 export interface Work {
-  /** Name of folder in `~/assets/projects` where assets are stored. */
-  key?: string;
+  /**
+   * Indicates that this will have a dedicated screen. This should also be
+   * the name of the folder in `~/assets/projects` where assets are stored.
+   */
+  slug?: string;
   name: string;
   description: string;
   tags: string[];
   distributions: {
+    /** Link to GitHub repository. Do not end with trailing `/`. */
     github: `https://github.com/${string}`;
     "google-playstore"?: string;
     npm?: string;
@@ -26,9 +30,9 @@ export interface Work {
   archived?: boolean;
 }
 
-export const Works: Work[] = [
+export const Works = [
   {
-    key: "Music",
+    slug: "music",
     name: "Music",
     description: "A Nothing inspired local music player.",
     tags: ["utility", "android"],
@@ -52,9 +56,9 @@ export const Works: Work[] = [
     },
     privacyPolicy: "/music/privacy-policy",
   },
-];
+] as const satisfies Work[];
 
-export const OpenSource: Work[] = [
+export const OpenSource = [
   {
     name: "react-native-metadata-retriever",
     description:
@@ -104,4 +108,4 @@ export const OpenSource: Work[] = [
     },
     archived: true,
   },
-];
+] as const satisfies Work[];

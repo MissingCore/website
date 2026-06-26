@@ -28,6 +28,7 @@
   --color-r-90: hsl(358 79% 89%);
 
   --color-y-10: hsl(57 100% 11%);
+  --color-y-40: hsl(47 100% 45%);
   --color-y-50: hsl(47 100% 50%);
   --color-y-60: hsl(47 100% 57%);
 
@@ -42,12 +43,20 @@
   --color-primary: var(--color-r-50);
   --color-primaryDim: var(--color-r-40);
   --color-onPrimary: var(--color-n-100);
+  --color-secondary: var(--color-y-50);
+  --color-secondaryDim: var(--color-y-40);
+  --color-onSecondary: var(--color-n-0);
   --color-outline: var(--color-n-30);
   --color-outlineVariant: var(--color-n-15);
 
   --font-ntype82: var(--font-ntype82);
   --font-nynjara: var(--font-nynjara);
   --font-space-grotesk: var(--font-space-grotesk);
+
+  --text-scaling-title: clamp(var(--text-4xl), 12.5cqw, var(--text-7xl));
+  --text-scaling-title--line-height: 1;
+  --text-scaling-subTitle: clamp(var(--text-lg), 5cqw, var(--text-2xl));
+  --text-scaling-subTitle--line-height: 1;
 
   --shadow-glow: 0 0 8px;
   --shadow-glow-lg: 0 0 16px;

@@ -1,0 +1,10 @@
+---
+import { Works } from "~/data/Works";
+
+import WorkPageBuilder from "~/navigation/components/WorkPageBuilder.astro";
+
+const project = Works.find((work) => work.slug === "music");
+if (!project) throw new Error("Music work entry not found.");
+---
+
+<WorkPageBuilder {...project} />

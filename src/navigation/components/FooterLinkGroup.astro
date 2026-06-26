@@ -1,0 +1,26 @@
+---
+interface Props {
+  label: string;
+  links: Array<{ href: string; label: string }>;
+}
+
+const { label, links } = Astro.props;
+---
+
+<div>
+  <p class="mb-4 font-nynjara text-lg uppercase">{label}</p>
+  <ul class="space-y-2">
+    {
+      links.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            {...(href.startsWith("https://") ? { target: "_blank" } : {})}
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
