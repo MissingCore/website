@@ -67,16 +67,7 @@ const formattedReleases = Object.entries(releases)
         {tags.join(" • ")}
       </p>
     </div>
-    {
-      !archived ? (
-        <GlowBadge
-          text="Live"
-          color="#D71921"
-          indicator
-          class="hidden sm:flex"
-        />
-      ) : null
-    }
+    {!archived ? <GlowBadge text="Live" color="#D71921" indicator /> : null}
   </header>
 
   <p class="-mt-4">{description}</p>
