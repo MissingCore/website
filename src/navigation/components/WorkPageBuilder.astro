@@ -1,0 +1,105 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+import type { Work } from "~/data/Works";
+import { formatReleases } from "~/data/Works.utils";
+
+import Layout from "~/navigation/layouts/Layout.astro";
+
+import NavButton from "~/components/NavButton.astro";
+import ReleaseLink from "~/components/ReleaseLink.astro";
+
+interface Props extends Omit<Work, "slug"> {
+  /** Slug is required if we have a dedicated work page. */
+  slug: string;
+}
+
+const {
+  slug,
+  name,
+  description,
+  tags,
+  distributions,
+  releases,
+  privacyPolicy,
+  archived,
+} = Astro.props;
+
+//#region Images
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/projects/**/*.png",
+);
+const ASSET_FOLDER = `/src/assets/projects/${slug}`;
+const projectAssets = Object.keys(images).filter((key) =>
+  key.startsWith(ASSET_FOLDER),
+);
+
+// We require a banner image.
+const bannerImgSrc = `${ASSET_FOLDER}/compressed-banner.png`;
+if (!images[bannerImgSrc]) throw new Error(`"${bannerImgSrc}" does not exist.`);
+// We require at least 1 "preview" image.
+const previewImgSrcs = projectAssets.filter((key) =>
+  key.startsWith(`${ASSET_FOLDER}/preview-`),
+);
+if (!previewImgSrcs.length) throw new Error(`"${name}" has no preview images.`);
+//#endregion
+
+const formattedReleases = formatReleases(releases, distributions);
+---
+
+<Layout title={name} description={description}>
+  <div
+    class="mx-auto grid auto-rows-auto gap-8 lg:grid-cols-[repeat(2,minmax(0,42rem))] lg:gap-16"
+  >
+    <Image
+      src={images[bannerImgSrc]()}
+      alt={`${name} app banner.`}
+      class="rounded-xl shadow-glow shadow-outlineVariant"
+    />
+
+    <header class="@container flex max-w-2xl flex-col gap-2 self-end">
+      <h1 class="font-ntype82 text-4xl wrap-break-word @md:text-7xl">
+        {name}
+      </h1>
+      <p class="text-xs text-onSurfaceDim uppercase">
+        {tags.join(" • ")}
+      </p>
+      <p class="mt-4 text-lg text-onSurfaceDim @md:text-2xl">
+        {description}
+      </p>
+      {
+        privacyPolicy ? (
+          <NavButton href={privacyPolicy} class="mt-8 w-full text-sm">
+            Privacy Policy
+          </NavButton>
+        ) : null
+      }
+    </header>
+
+    <div class="relative py-8 lg:py-32">
+      <div class="sticky lg:top-1/2 lg:-translate-y-1/2">
+        <h2 class="mb-6 font-nynjara text-2xl uppercase sm:text-3xl">
+          Releases
+        </h2>
+        <div class="mt-auto space-y-4">
+          {formattedReleases.map((release) => <ReleaseLink {...release} />)}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="minimal-scrollbar flex flex-row items-center gap-8 overflow-auto py-4 lg:flex-col"
+    >
+      {
+        previewImgSrcs.map((imgSrc, index) => (
+          <Image
+            src={images[imgSrc]()}
+            alt={`${name} preview ${index}`}
+            class="max-h-[calc(100svh-4rem)] w-auto rounded-4xl shadow-glow-lg shadow-outlineVariant"
+          />
+        ))
+      }
+    </div>
+  </div>
+</Layout>

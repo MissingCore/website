@@ -1,0 +1,9 @@
+---
+import { Works } from "~/data/Works";
+
+import WorkPageBuilder from "~/navigation/components/WorkPageBuilder.astro";
+
+const project = Works[0];
+---
+
+<WorkPageBuilder {...project} />
