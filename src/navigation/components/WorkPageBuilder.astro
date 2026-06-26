@@ -8,6 +8,7 @@ import { formatReleases } from "~/data/Works.utils";
 import Layout from "~/navigation/layouts/Layout.astro";
 
 import { cn } from "~/lib/style";
+import GlowBadge from "~/components/GlowBadge.astro";
 import NavButton from "~/components/NavButton.astro";
 import ReleaseLink from "~/components/ReleaseLink.astro";
 
@@ -60,9 +61,12 @@ const formattedReleases = formatReleases(releases, distributions);
     />
 
     <header class="@container flex max-w-2xl flex-col gap-2 self-end">
-      <h1 class="font-ntype82 text-scaling-title wrap-break-word">
-        {name}
-      </h1>
+      <div class="flex items-center justify-between gap-4">
+        <h1 class="font-ntype82 text-scaling-title wrap-break-word">
+          {name}
+        </h1>
+        {!archived ? <GlowBadge text="Live" color="#D71921" indicator /> : null}
+      </div>
       <p class="text-xs text-onSurfaceDim uppercase">
         {tags.join(" • ")}
       </p>
