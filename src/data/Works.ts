@@ -30,7 +30,7 @@ export interface Work {
   archived?: boolean;
 }
 
-export const Works: Work[] = [
+export const Works = [
   {
     slug: "music",
     name: "Music",
@@ -56,9 +56,9 @@ export const Works: Work[] = [
     },
     privacyPolicy: "/music/privacy-policy",
   },
-];
+] as const satisfies Work[];
 
-export const OpenSource: Work[] = [
+export const OpenSource = [
   {
     name: "react-native-metadata-retriever",
     description:
@@ -108,4 +108,4 @@ export const OpenSource: Work[] = [
     },
     archived: true,
   },
-];
+] as const satisfies Work[];
