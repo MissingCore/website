@@ -11,7 +11,7 @@ import ReleaseLink from "./ReleaseLink.astro";
 interface Props extends Work {}
 
 const {
-  key,
+  slug,
   name,
   description,
   tags,
@@ -25,8 +25,8 @@ let imgSrc = null;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/projects/**/icon.png",
 );
-if (key) {
-  imgSrc = `/src/assets/projects/${key}/icon.png`;
+if (slug) {
+  imgSrc = `/src/assets/projects/${slug}/icon.png`;
   if (!images[imgSrc]) throw new Error(`"${imgSrc}" does not exist.`);
 }
 
