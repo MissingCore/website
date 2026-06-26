@@ -16,7 +16,7 @@ export function formatReleases(
           distributor,
           link:
             distributor === "github"
-              ? `${distributions.github}/releases/${versionCode}`
+              ? `${distributions.github}/releases/tag/${versionCode}`
               : distributions[distributor]!,
         })),
       };

@@ -71,6 +71,7 @@ const formattedReleases = formatReleases(releases, distributions);
         ) : null}
         {slug ? (
           <a
+            aria-label={`Learn more about ${name}.`}
             href={`/${slug}`}
             class="flex aspect-square items-center justify-center rounded-full bg-secondary p-2 text-onSecondary hover:bg-secondaryDim"
           >
