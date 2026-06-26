@@ -7,6 +7,7 @@ import { formatReleases } from "~/data/Works.utils";
 
 import Layout from "~/navigation/layouts/Layout.astro";
 
+import { cn } from "~/lib/style";
 import NavButton from "~/components/NavButton.astro";
 import ReleaseLink from "~/components/ReleaseLink.astro";
 
@@ -89,14 +90,19 @@ const formattedReleases = formatReleases(releases, distributions);
     </div>
 
     <div
-      class="minimal-scrollbar flex flex-row items-center gap-8 overflow-auto py-4 lg:flex-col"
+      class={cn(
+        "@container minimal-scrollbar flex flex-row items-center gap-8 overflow-auto p-4 lg:flex-col",
+        // Layout adjustments for edge-to-edge horizontal scroll.
+        "max-sm:-mx-4",
+        "sm:max-lg:-mr-16 sm:max-lg:-ml-43 sm:max-lg:pr-16 sm:max-lg:pl-43",
+      )}
     >
       {
         previewImgSrcs.map((imgSrc, index) => (
           <Image
             src={images[imgSrc]()}
             alt={`${name} preview ${index}`}
-            class="max-h-[calc(100svh-4rem)] w-auto rounded-4xl shadow-glow-lg shadow-outlineVariant"
+            class="max-h-[calc(100svh-4rem)] w-auto rounded-[5cqw] shadow-glow-lg shadow-outlineVariant"
           />
         ))
       }
