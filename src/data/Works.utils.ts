@@ -18,7 +18,7 @@ export function formatReleases(
             distributor === "github"
               ? `${distributions.github}/releases/tag/${versionCode}`
               : distributor === "npm"
-                ? `${distributions.npm}/v/${versionCode.replace("^v", "")}`
+                ? `${distributions.npm}/v/${versionCode.replace("v", "")}`
                 : distributions[distributor]!,
         })),
       };
