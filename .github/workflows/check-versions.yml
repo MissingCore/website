@@ -49,8 +49,8 @@ jobs:
           echo "PUBLIC_MUSIC_LATEST_TAG=${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" > .env.local
           echo "PUBLIC_MUSIC_RECENT_TAG=${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" >> .env.local
 
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Commit changes to `.env.local`
           git add .env.local
