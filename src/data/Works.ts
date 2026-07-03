@@ -1,4 +1,9 @@
-import { MUSIC_LATEST_RELEASE, MUSIC_LATEST_TAGGED_RELEASE } from "./env";
+import {
+  METADATA_RETRIEVER_LATEST_RELEASE,
+  METADATA_RETRIEVER_LATEST_TAGGED_RELEASE,
+  MUSIC_LATEST_RELEASE,
+  MUSIC_LATEST_TAGGED_RELEASE,
+} from "./env";
 
 export type Distributor = "github" | "google-playstore" | "npm";
 
@@ -70,9 +75,17 @@ export const OpenSource = [
     },
     releases: {
       stable: {
-        versionCode: "v3.2.1",
+        versionCode: METADATA_RETRIEVER_LATEST_RELEASE,
         distributors: ["github", "npm"],
       },
+      preRelease:
+        METADATA_RETRIEVER_LATEST_RELEASE !==
+        METADATA_RETRIEVER_LATEST_TAGGED_RELEASE
+          ? {
+              versionCode: METADATA_RETRIEVER_LATEST_TAGGED_RELEASE,
+              distributors: ["github", "npm"],
+            }
+          : undefined,
     },
   },
   {

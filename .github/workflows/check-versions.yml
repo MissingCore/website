@@ -39,15 +39,47 @@ jobs:
 
           echo "Latest Tag: ${MUSIC_LATEST_TAG:-none}, Most Recent Tag: ${MUSIC_RECENT_TAG:-none}"
 
+      - name: Query releases from MetadataRetriever Package
+        id: metadata_retriever_versions
+        run: |
+          METADATA_RETRIEVER_LATEST_TAG=$(gh release list \
+            --repo MissingCore/react-native-metadata-retriever \
+            --exclude-drafts \
+            --exclude-pre-releases \
+            --limit 1 \
+            --json tagName \
+            --jq '.[0].tagName // empty')
+
+          METADATA_RETRIEVER_RECENT_TAG=$(gh release list \
+            --repo MissingCore/react-native-metadata-retriever \
+            --exclude-drafts \
+            --limit 1 \
+            --json tagName \
+            --jq '.[0].tagName // empty')
+
+          echo "METADATA_RETRIEVER_LATEST_TAG=$METADATA_RETRIEVER_LATEST_TAG" >> "$GITHUB_OUTPUT"
+          echo "METADATA_RETRIEVER_RECENT_TAG=$METADATA_RETRIEVER_RECENT_TAG" >> "$GITHUB_OUTPUT"
+
+          echo "Latest Tag: ${METADATA_RETRIEVER_LATEST_TAG:-none}, Most Recent Tag: ${METADATA_RETRIEVER_RECENT_TAG:-none}"
+
       - name: Write versions to `.env.local` file and commit
         run: |
-          if [ -z "${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" ] || \
-             [ -z "${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" ]; then
-            echo "One or both tags are empty; skipping write/commit."
-            exit 1
-          fi
+          for tag in \
+            "${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" \
+            "${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" \
+            "${{ steps.metadata_retriever_versions.outputs.METADATA_RETRIEVER_LATEST_TAG }}" \
+            "${{ steps.metadata_retriever_versions.outputs.METADATA_RETRIEVER_RECENT_TAG }}"; do
+            if [ -z "$tag" ]; then
+              echo "::error::One or more release tags are empty; aborting to avoid corrupting .env.local"
+              exit 1
+            fi
+          done
+
           echo "PUBLIC_MUSIC_LATEST_TAG=${{ steps.music_versions.outputs.MUSIC_LATEST_TAG }}" > .env.local
           echo "PUBLIC_MUSIC_RECENT_TAG=${{ steps.music_versions.outputs.MUSIC_RECENT_TAG }}" >> .env.local
+
+          echo "PUBLIC_METADATA_RETRIEVER_LATEST_TAG=${{ steps.metadata_retriever_versions.outputs.METADATA_RETRIEVER_LATEST_TAG }}" >> .env.local
+          echo "PUBLIC_METADATA_RETRIEVER_RECENT_TAG=${{ steps.metadata_retriever_versions.outputs.METADATA_RETRIEVER_RECENT_TAG }}" >> .env.local
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
