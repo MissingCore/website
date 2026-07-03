@@ -9,12 +9,14 @@ jobs:
     name: Check for current app versions and re-build site if they changed
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.MISSINGCORE_BOT_GITHUB_TOKEN }}
     permissions:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.MISSINGCORE_BOT_GITHUB_TOKEN }}
 
       - name: Query releases from MissingCore Music
         id: music_versions
@@ -81,8 +83,8 @@ jobs:
           echo "PUBLIC_METADATA_RETRIEVER_LATEST_TAG=${{ steps.metadata_retriever_versions.outputs.METADATA_RETRIEVER_LATEST_TAG }}" >> .env.local
           echo "PUBLIC_METADATA_RETRIEVER_RECENT_TAG=${{ steps.metadata_retriever_versions.outputs.METADATA_RETRIEVER_RECENT_TAG }}" >> .env.local
 
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "MissingCore-Bot"
+          git config user.email "170483286+MissingCore-Bot@users.noreply.github.com"
 
           # Commit changes to `.env.local`
           git add .env.local
